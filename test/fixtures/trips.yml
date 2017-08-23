@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pickup_time: 2017-08-23
+  total_space: 1
+
+two:
+  pickup_time: 2017-08-23
+  total_space: 1
