@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823213135) do
+ActiveRecord::Schema.define(version: 20170824144355) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,22 +20,10 @@ ActiveRecord::Schema.define(version: 20170823213135) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_pickups_on_user_id"
-
     t.bigint "trip_id"
     t.index ["trip_id"], name: "index_pickups_on_trip_id"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.integer "entry_type", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
-    t.bigint "pickup_id"
-    t.index ["pickup_id"], name: "index_transactions_on_pickup_id"
+    t.index ["user_id"], name: "index_pickups_on_user_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -54,11 +43,8 @@ ActiveRecord::Schema.define(version: 20170823213135) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  
-  add_foreign_key "pickups", "users"
-  add_foreign_key "transactions", "users"
-  add_foreign_key "trips", "users"
-  add_foreign_key "transactions", "pickups"
-  add_foreign_key "pickups", "trips"
 
+  add_foreign_key "pickups", "trips"
+  add_foreign_key "pickups", "users"
+  add_foreign_key "trips", "users"
 end
