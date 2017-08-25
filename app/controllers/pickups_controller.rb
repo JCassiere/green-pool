@@ -1,4 +1,6 @@
 class PickupsController < ApplicationController
+  before_filter :authorize
+
   def new
   end
 
