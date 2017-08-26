@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :authorize, :except => [:create, :new]
 
   def show
@@ -11,7 +11,7 @@ class UserController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		session[:user_id] = user.id
+  		session[:user_id] = @user.id
   		redirect_to '/', notice: 'Account created successfully'
   	else
       flash[:error] = 'An error occured!'
