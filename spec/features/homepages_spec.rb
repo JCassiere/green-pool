@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Hompages", type: :feature do
+RSpec.feature "Homepages", type: :feature do
   it "I should be able to go the page and see the start trip link"
   it "I should be able to to go to the page and see the find trip link"
   it "I should be able to go to the new trip page after I click the start trip button only if i am logged in"
