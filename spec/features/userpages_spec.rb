@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "Userpages", type: :feature do
-  it "I should be able to go to the homepage and see the link to go to my profile if logged in"
+  it "I should be able to go to the homepage and see the link to go to my profile" do
+    visit '/'
+    expect(page).to have_content('Profile')
+    find_link('Profile').click
+  end
   it "userpage should load"
   it "userpage should show user's trips"
   it "userpage should show pending trips"
