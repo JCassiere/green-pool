@@ -6,6 +6,7 @@ RSpec.feature "Userpages", type: :feature do
     expect(page).to have_content('Profile')
     find_link('Profile').click
   end
+  
   it "userpage should load"
   it "userpage should show user's trips"
   it "userpage should show pending trips"
