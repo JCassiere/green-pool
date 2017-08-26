@@ -6,8 +6,12 @@ RSpec.feature "Userpages", type: :feature do
     expect(page).to have_content('Profile')
     find_link('Profile').click
   end
-  
-  it "userpage should load"
+
+  it "userpage should load" do
+    vist '/'
+    find_link('Profile').click
+    expect(page).to have_content('Hello, User!')
+  end
   it "userpage should show user's trips"
   it "userpage should show pending trips"
   it "userpage should show number of credits"
