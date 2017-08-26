@@ -22,6 +22,7 @@ RSpec.feature "Findtrippages", type: :feature do
     it "should now have an updated space available attribute for the trip if the pickup is accepted"
     it "should show confirmation modal when clicking done link"
     it "should find complete pickup button when confirmation modal appears"
-    it "after confirmation link clicked modal should have a complete pickup button"  
+    it "after complete pickup button clicked modal should disappear"
+    it "trip should disappear from page after last pickup is completed"
   end
 end
