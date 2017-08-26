@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :authorize, :except => [:create, :new]
+  before_action :authorize, :except => [:create, :new]
 
   def show
     @user = User.find(params[:id])
@@ -23,4 +23,7 @@ class UserController < ApplicationController
   	def user_params
   		params.require(:user).permit(:name, :email, :password, :password_confirmation)
   	end
+
+    def authorize
+    end
 end

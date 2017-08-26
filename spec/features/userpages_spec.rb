@@ -7,7 +7,7 @@ RSpec.feature "Userpages", type: :feature do
     find_link('Profile').click
   end
 
-  it "userpage should load" do
+  it "userpage should load if logged in" do
     visit '/users/1'
     expect(page).to have_content('Hello, User!')
   end
