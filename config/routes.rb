@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'trips/index'
 
-  get 'users/show'
+  get 'users/:id' => 'user#show'
 
   get 'users/new'
 

@@ -1,7 +1,8 @@
-class UsersController < ApplicationController
+class UserController < ApplicationController
   before_filter :authorize, :except => [:create, :new]
 
   def show
+    @user = User.find(params[:id])
   end
 
   def new

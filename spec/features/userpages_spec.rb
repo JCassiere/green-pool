@@ -8,8 +8,7 @@ RSpec.feature "Userpages", type: :feature do
   end
 
   it "userpage should load" do
-    vist '/'
-    find_link('Profile').click
+    visit '/users/1'
     expect(page).to have_content('Hello, User!')
   end
   it "userpage should show user's trips"
