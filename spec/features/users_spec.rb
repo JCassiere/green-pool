@@ -17,6 +17,7 @@ RSpec.feature "Users", type: :feature do
       fill_in "Email", with: "fakeemail@gmail.com"
       fill_in "Password", with: "password"
       fill_in "Password Confirmation", with: "password"
+      attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
       click_button "Submit"
       @guy = User.first
     end
@@ -50,7 +51,7 @@ RSpec.feature "Users", type: :feature do
 
       it "should return to the login page with invalid credentials" do
         fill_in "Email", with: Faker::Internet.email
-        fill_in "Password", with: "notapassword"
+        fill_in "Password", with: Faker::Internet.password(8)
         click_button "Submit"
         expect(page).to have_content("That email/password combination is not valid!")
       end
