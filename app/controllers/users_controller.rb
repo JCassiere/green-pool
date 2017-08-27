@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authorize, :except => [:create, :new]
+  before_action :authorize, :except => [:create, :new]
 
   def show
   end
@@ -9,9 +9,10 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
+    @user.credit_count = 1
   	if @user.save
-  		session[:user_id] = user.id
-  		redirect_to '/', notice: 'Account created successfully'
+  		session[:user_id] = @user.id
+  		redirect_to '/', notice: "Welcome, #{@user.first_name}!"
   	else
       flash[:error] = 'An error occured!'
   		render 'new'
@@ -20,6 +21,6 @@ class UsersController < ApplicationController
 
   private
   	def user_params
-  		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  		params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   	end
 end
