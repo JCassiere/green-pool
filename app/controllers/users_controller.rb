@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authorize, :except => [:create, :new]
 
   def show
+    @user = current_user
   end
 
   def new
@@ -21,6 +22,6 @@ class UsersController < ApplicationController
 
   private
   	def user_params
-  		params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  		params.require(:user).permit(:first_name, :last_name, :avatar, :email, :password, :password_confirmation)
   	end
 end

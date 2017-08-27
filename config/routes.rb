@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   get 'trips/show'
 
-  get 'trips/index'
+  get 'trips' => 'trips#index', as: "trips_index"
 
-  get 'users/show'
+  get 'users/:id' => 'users#show', as: "users_show"
 
   get 'users/new'
 
