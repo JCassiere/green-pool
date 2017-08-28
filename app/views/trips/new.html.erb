@@ -1,2 +1,21 @@
-<h1>Trips#new</h1>
-<p>Find me in app/views/trips/new.html.erb</p>
+<%= @driver.full_name %>'s Trip
+
+<%= form_for :trip, url: '/trips' do |f| %>
+
+  <div class="field">
+	  <%= f.label :total_space, "Total Space" %>
+	  <%= f.text_field :total_space %>
+  </div>
+
+	<div class="field">
+	  <%= f.label :pickup_time, "Last Name" %>
+	  <%= f.datetime_field :pickup_time %>
+  </div>
+
+  <% f.hidden_field :user_id, value: @driver.id %>
+
+  <div class="action">
+	  <%= f.submit "Create Trip" %>
+  </div>
+
+<% end %>

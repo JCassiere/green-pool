@@ -10,6 +10,7 @@ RSpec.feature "Userpages", type: :feature do
     fill_in "Email", with: @email
     fill_in "Password", with: @password
     fill_in "Password Confirmation", with: @password
+    attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
     click_button "Submit"
 		@user = User.find_by(email: @email)
 		@pickup_time = Faker::Date.forward(2)
@@ -30,15 +31,7 @@ RSpec.feature "Userpages", type: :feature do
   	click_link('Profile')
   	expect(page).to have_content(@pickup_time)
   end
-  it "userpage should show pending pickups" do
-  	@user_two = User.create(
-  		first_name: Faker::Name.first_name
-  		last_name: Faker::Name.last_name
-  		email: Faker::Internet.email
-  		password_digest: Faker::Internet.password
-
-  		)
-  end
+  it "userpage should show pending pickups"
   it "userpage should show number of credits"
   it "userpage should allow user to logout and be redirected to homepage"
 end

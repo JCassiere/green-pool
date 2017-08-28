@@ -55,3 +55,15 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+def dummy_user
+  visit(signup_path)
+  fill_in "First Name", with: "Random"
+  fill_in "Last Name", with: "Person"
+  fill_in "Email", with: "fakeemail@gmail.com"
+  fill_in "Password", with: "password"
+  fill_in "Password Confirmation", with: "password"
+  attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
+  click_button "Submit"
+  User.find_by(email: "fakeemail@gmail.com")
+end

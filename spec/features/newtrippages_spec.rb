@@ -1,11 +1,24 @@
 require 'rails_helper'
 
 RSpec.feature "Newtrippages", type: :feature do
-  describe "to create a new trip" do
-    it "I should be able to go to the homepage and find the new trip link"
-    it "should redirect me to the new trip page after clicking the new trip link"
-    it "I should be able to go to the new trip page and find a create trip button"
-    it "after clicking new trip link should show user's name/space available form/date form"
+  before(:each) do
+    @user = dummy_user
+    click_link("Schedule Trip")
+  end
+
+  describe "clicking new trip link" do
+    it "should show user's name" do
+      expect(page).to have_content(@user.full_name)
+    end
+    it "should show space available form" do
+      expect(page).to have_css('input[name="trip[total_space]"]')
+    end
+    it "should show date form" do
+      expect(page).to have_css('input[name="trip[pickup_time]"]')
+    end
+    it "should have a create trip button" do
+      expect(find_button('Create Trip').visible?).to be true
+    end
   end
 
   describe "when a trip is created" do

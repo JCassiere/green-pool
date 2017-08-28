@@ -11,20 +11,12 @@ RSpec.feature "Users", type: :feature do
 
   describe "to create a new user" do
     before(:each) do
-      visit(signup_path)
-      fill_in "First Name", with: "Random"
-      fill_in "Last Name", with: "Person"
-      fill_in "Email", with: "fakeemail@gmail.com"
-      fill_in "Password", with: "password"
-      fill_in "Password Confirmation", with: "password"
-      attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
-      click_button "Submit"
-      @guy = User.first
+      @user = dummy_user
     end
 
     it "should be able to fill out the sign up form to create an account" do
-      @guy.first_name = "Random"
-      @guy.last_name = "Person"
+      @user.first_name = "Random"
+      @user.last_name = "Person"
     end
 
     it "should redirect to homepage and see a welcome message only after creating an account" do
