@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+
+.navbar {
+	background-color: #009446;
+}
+
+.navbar-text a {
+	margin-right: 5px;
+	color: white;
+}
+
+button {
+	background-color: #009446;
+	border-style: outset;
+	border-color: #009446;
+	border-width: 3px;
+	margin-right: 2px;
+}

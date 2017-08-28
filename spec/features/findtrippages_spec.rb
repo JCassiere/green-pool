@@ -1,9 +1,36 @@
 require 'rails_helper'
 
 RSpec.feature "Findtrippages", type: :feature do
+before(:each) do
+    visit(signup_path)
+    fill_in "First Name", with: "Random"
+    fill_in "Last Name", with: "Person"
+    fill_in "Email", with: "fakeemail@gmail.com"
+    fill_in "Password", with: "password"
+    fill_in "Password Confirmation", with: "password"
+    attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
+    click_button "Submit"
+  end
   describe "a signed in user adds recycling to a trip" do
-    it "I should be able to go to the homepage and find the find trip link"
-    it "after a trip is created by a different user a trip should be be on the find trip page"
+    before(:each) do
+        @other_user = User.create(
+            first_name: "Some", 
+            last_name: "Guy", 
+            email: "fakemail@gmail.com", 
+            password_digest: "password",
+            avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'))
+        @pickup_time = Faker::Date.forward(2)
+        @trip = @other_user.trips.create(
+        pickup_time: @pickup_time,
+        total_space: 5
+        )
+    end
+    it "I should be able to go to the homepage and find the find trip link" do
+        expect(find_link('Have Your Recycling Picked Up').visible?).to be true
+    end
+    it "after a trip is created by a different user a trip should be be on the find trip page" do
+        expect(page).to have_content(@other_user.first_name)
+    end
     it "after a trip is created by a different user it's driver/start location/space availbale/ date should be displayed"
     it "after a trip is created by a different user a user should be able to decrement the space available by adding bags using a form"
     it "I should be able to find an add to trip button"
