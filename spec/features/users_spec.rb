@@ -15,8 +15,8 @@ RSpec.feature "Users", type: :feature do
     end
 
     it "should be able to fill out the sign up form to create an account" do
-      @user.first_name = "Random"
-      @user.last_name = "Person"
+      expect(@user.first_name).to eq("Random")
+      expect(@user.last_name).to eq("Person")
     end
 
     it "should redirect to homepage and see a welcome message only after creating an account" do

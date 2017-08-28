@@ -22,7 +22,16 @@ RSpec.feature "Newtrippages", type: :feature do
   end
 
   describe "when a trip is created" do
-    it "should have a start address"
+    before(:each) do
+      @pickup_time = Faker::Time.forward(2, :morning) 
+      @trip = @user.trips.create(
+        pickup_time: @pickup_time,
+        total_space: 5
+      )
+    end
+    it "should have a start address" do
+
+    end
     it "should have the remaing space available"
     it "should have a trip driver"
     it "should have a trip date"
