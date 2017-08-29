@@ -2,7 +2,10 @@ class UsersController < ApplicationController
   before_action :authorize, :except => [:create, :new]
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    @trips = @user.trips
+    #@user = current_user
+
   end
 
   def new
@@ -14,6 +17,7 @@ class UsersController < ApplicationController
   	if @user.save
   		session[:user_id] = @user.id
   		redirect_to '/', notice: "Welcome, #{@user.first_name}!"
+
   	else
       flash[:error] = 'An error occured!'
   		render 'new'
@@ -36,4 +40,7 @@ class UsersController < ApplicationController
         :country
         )
   	end
+
+    def authorize
+    end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
+
+  root 'home#index'
 
   get 'pickups/new'
 
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
 
 
   get 'trips/:id' => 'trips#show', as: "trips_show"
+
+
+  #get 'users/:id' => 'users#show', as: 'user'
 
   get 'trips' => 'trips#index', as: "trips_index"
 
