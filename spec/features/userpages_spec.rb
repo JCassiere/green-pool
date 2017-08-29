@@ -52,7 +52,17 @@ RSpec.feature "Userpages", type: :feature do
       expect(page).to have_content("Credit count: #{@user.credit_count}")
     end
 
-    it "userpage should allow user to logout and be redirected to homepage"
+    it "userpage should allow user to logout and be redirected to homepage after signing up and logging in" do
+      visit user_path(@user)
+      find_link('Login').click
+      save_and_open_page
+      fill_in(text_field_tag, :with => @user.email)
+      fill_in(password_field_tag, :with => @user.password_digest)
+      click('Submit')
+      expect(page).to have_content('Logout')
+      find_link('Logout').click
+      expect(page).to have_content('Homepage')
+    end
 
   end
 end
