@@ -1,5 +1,7 @@
-<%= flash.notice %>
+<h1 id="notice" align="center"><%= flash.notice %></h1>
 
-<p align="center"><button class="btn btn-primary col-8"><%= link_to "Schedule Trip", trips_new_path %></button></p>
+<div class="buttons">
+<button class="btn btn-primary col-9 mb-4 btn-lg" align="center"><%= link_to "Schedule Trip", trips_new_path %></button>
 
-<p align="center"><button class="btn btn-primary col-8"><%= link_to "Have Your Recycling Picked Up", trips_index_path %></button></p>
+<button class="btn btn-primary col-9 mb-4 btn-lg" align="center"><%= link_to "Have Your Recycling Picked Up", trips_index_path %></button>
+</div>
