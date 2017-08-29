@@ -24,6 +24,10 @@
 	color: white;
 }
 
+.navbar-dark .navbar-text {
+    color: white;
+}
+
 button {
 	background-color: #009446;
 	border-style: outset;

@@ -2,12 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.buttons {
-	margin-top: 100px;
+#notice {
+	margin-top: 20px;
 }
 
-.btn {
+.buttons {
+	width: 100%;
+	position:fixed !important;
+	position:absolute;
+	top:70px;
+	right:0;
+	bottom:0;
+	left:0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+}
+
+.btn a {
 	margin-top: 0;
-	color: white !important;
+	color: white;
 	text-decoration: none;
+}
+
+.btn-lg {
+	padding: 20px;
 }
