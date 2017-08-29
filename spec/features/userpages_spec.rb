@@ -25,13 +25,20 @@ RSpec.feature "Userpages", type: :feature do
       # Trip.create(pickup_time: Faker::Date.forward(1), total_space: 3, user_id: @user.id)
       # Trip.create(pickup_time: Faker::Date.forward(1), total_space: 3, user_id: @user.id)
       # Trip.create(pickup_time: Faker::Date.forward(1), total_space: 3, user_id: @user.id)
-      p @user.trips[0].id
       visit "/users/#{@user.id}"
       expect(page).to have_content("Trip: #{@user.trips[0].id}")
       #expect(page).to have_content("Trip")
     end
 
-    it "userpage should show pending trips"
+    it "userpage should show pending pickups" do
+      @user.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
+      recycler = User.create!(name: Faker::Name.name, email: Faker::Internet.email, address: "#{Faker::Address.street_address} #{Faker::Address.city},#{Faker::Address.state_abbr} #{Faker::Address.zip}", credit_count: 3, password_digest: Faker::DragonBall.character)
+      @user.trips.last.pickups.create(num_bags: 3, status: 0, user: recycler)
+      visit"/users/#{recycler.id}"
+      save_and_open_page
+      expect(page).to have_content("Pick ups pending: #{recycler.pickups.last.id}")
+    end
+
     it "userpage should show number of credits"
     it "userpage should allow user to logout and be redirected to homepage"
 

@@ -42,6 +42,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'faker'
+  gem 'hirb'
+  gem 'launchy'
 end
 
 group :development do
