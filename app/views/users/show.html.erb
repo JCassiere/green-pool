@@ -4,6 +4,7 @@
 <p>Trip: <%=t.id%></p>
 <%end%>
 
+
 <% @trips.each do |t| %>
   <% t.pickups.each do |x| %>
     <p>Pick ups pending: <%=x.id%></p>
