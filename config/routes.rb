@@ -6,13 +6,19 @@ Rails.application.routes.draw do
 
   get 'pickups/show'
 
-  get 'trips/new'
+  get '/trips/new' => 'trips#new'
 
-  get 'trips/show'
+  post '/trips' => 'trips#create'
 
-  get 'trips/index'
 
-  get 'users/:id' => 'users#show', as: 'user'
+  get 'trips/:id' => 'trips#show', as: "trips_show"
+
+
+  #get 'users/:id' => 'users#show', as: 'user'
+
+  get 'trips' => 'trips#index', as: "trips_index"
+
+  get 'users/:id' => 'users#show', as: "users_show"
 
   get 'users/new'
 
@@ -26,6 +32,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
 
   get '/logout' => 'sessions#destroy'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824192917) do
+
+ActiveRecord::Schema.define(version: 20170828151728) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,16 +29,15 @@ ActiveRecord::Schema.define(version: 20170824192917) do
   end
 
   create_table "trips", force: :cascade do |t|
-    t.date "pickup_time"
     t.integer "total_space"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.datetime "pickup_time"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
     t.string "email"
     t.text "address"
     t.integer "credit_count"
@@ -47,6 +48,16 @@ ActiveRecord::Schema.define(version: 20170824192917) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.string "zip_code"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "pickups", "trips"
