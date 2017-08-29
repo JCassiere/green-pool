@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20170829230929) do
     t.index ["user_id"], name: "index_pickups_on_user_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.integer "entry_type", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trips", force: :cascade do |t|
     t.integer "total_space"
     t.datetime "created_at", null: false
