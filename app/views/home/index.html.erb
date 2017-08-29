@@ -1,5 +1,7 @@
-<%= flash.notice %>
+<h1 id="notice" align="center"><%= flash.notice %></h1>
 
-<%= link_to "Schedule Trip", trips_new_path %>
+<div class="buttons">
+<button class="btn btn-primary col-9 mb-4 btn-lg" align="center"><%= link_to "Schedule Trip", trips_new_path %></button>
 
-<%= link_to "Have Your Recycling Picked Up", trips_index_path %>
+<button class="btn btn-primary col-9 mb-4 btn-lg" align="center"><%= link_to "Have Your Recycling Picked Up", trips_index_path %></button>
+</div>
