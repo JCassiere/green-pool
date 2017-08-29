@@ -1,6 +1,28 @@
+
+<h1>Users#show</h1>
+<!-- <p>Hello, <#=@user.name%>!</p> -->
+<%#@user.trips.each do |t|%>
+<!-- <p>Trip: <#=t.id%></p> -->
+<%#end%>
+
+
+<% @trips.each do |t| %>
+  <% t.pickups.each do |x| %>
+    <p>Pick ups pending: <%=x.id%></p>
+  <%end%>
+<%end%>
+
+<% @user.recycling_pickups.each do |t| %>
+  <p>Pick ups pending: <%=t.id%></p>
+<%end%>
+
+<p>Credit count: <%= @user.credit_count%></p>
+
 <h3>Trips</h3>
 <% @user.trips.each do |trip| %>
 	<p>
-		<%= trip.pickup_time %>
+		<%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
+		<%= link_to "View Trip", trips_show_path(trip.id) %>
 	</p>
 <% end %>
+

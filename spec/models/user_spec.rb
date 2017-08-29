@@ -2,13 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 	before(:each) do
-		@user = User.new(
-			first_name: "Random", 
-			last_name: "Person", 
-			email: "fakeemail@gmail.com", 
-			password_digest: "password",
-			avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg')
-			)
+		@user = dummy_user_model
 	end
 
 	it "is valid with valid attributes" do
@@ -40,15 +34,39 @@ RSpec.describe User, type: :model do
    	expect(@user).to_not be_valid
   end
 
+  it "is not valid without a street" do
+    @user.street = nil
+    expect(@user).to_not be_valid
+  end
+
+  it "is not valid without a city" do
+    @user.city = nil
+    expect(@user).to_not be_valid
+  end
+
+  it "is not valid without a state" do
+    @user.state = nil
+    expect(@user).to_not be_valid
+  end
+
+  it "is not valid without a country" do
+    @user.country = nil
+    expect(@user).to_not be_valid
+  end
+
+  it "is not valid without a zip code" do
+    @user.zip_code = nil
+    expect(@user).to_not be_valid
+  end
+
+  it "is geocoded by its address" do
+    @user.save
+    expect(@user.latitude).to_not be_nil
+  end
+
   it "should verify that email is unique" do
   	@user.save
-  	@another_user = User.new(
-			first_name: "Random", 
-			last_name: "Person", 
-			email: "fakeemail@gmail.com", 
-			password_digest: "password",
-			avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg')
-			)
+  	@another_user = dummy_user_model
   	expect(@another_user).to_not be_valid
   end
 end
