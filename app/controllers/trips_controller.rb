@@ -6,12 +6,15 @@ class TripsController < ApplicationController
   end
 
   def show
+    @trip = Trip.find(params[:id])
   end
 
   def index
   end
 
   def create
+    @trip = Trip.create(trip_params)
+    redirect_to "/users/#{current_user.id}"
   end
 
   private

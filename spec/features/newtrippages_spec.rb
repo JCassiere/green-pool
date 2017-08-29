@@ -14,34 +14,45 @@ RSpec.feature "Newtrippages", type: :feature do
       expect(page).to have_css('input[name="trip[total_space]"]')
     end
     it "should show date form" do
-      expect(page).to have_css('input[name="trip[pickup_time]"]')
+      expect(page).to have_css('select[name="trip[pickup_time(1i)]"]')
     end
     it "should have a create trip button" do
       expect(find_button('Create Trip').visible?).to be true
     end
   end
 
-  describe "when a trip is created" do
+  describe "after creating a trip" do
     before(:each) do
-      @pickup_time = Faker::Time.forward(2, :morning) 
-      @trip = @user.trips.create(
-        pickup_time: @pickup_time,
-        total_space: 5
-      )
+      fill_in "Total Space", with: 5
+      select_date("2018,September,5", :from => "Pickup Time")
+      select_time("14", "00", :from => "Pickup Time")
+      click_button("Create Trip")
     end
-    it "should have a start address" do
 
+    it "the user should now have a new trip on their user page" do
+      expect(page).to have_content("September 5, 2018 at 2:00 PM")
     end
-    it "should have the remaing space available"
-    it "should have a trip driver"
-    it "should have a trip date"
-    it "the user should now have a new trip on their user page"
-  end
 
-  describe "when visiting the driver trip page" do
-    it "should display the driver's name"
-    it "should display the trip's date"
-    it "should show the space remaing for the trip"
-    it "should have no pickups associated with it"
+    describe "when visiting the driver trip page" do
+      before(:each) do
+        click_link("View Trip")
+      end
+
+      it "should display the driver's name" do
+        expect(page).to have_content("Random Person's Trip")
+      end
+
+      it "should display the trip's date" do
+        expect(page).to have_content("September 5, 2018 at 2:00 PM")
+      end
+
+      it "should show the space remaining for the trip" do
+        expect(page).to have_content("Space left for 5 bags")
+      end
+
+      it "should have no pickups associated with it" do
+        expect(page).to_not have_content("Pickups")
+      end
+    end
   end
 end

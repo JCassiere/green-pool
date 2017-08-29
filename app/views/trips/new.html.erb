@@ -9,10 +9,10 @@
 
 	<div class="field">
 	  <%= f.label :pickup_time, "Pickup Time" %>
-	  <%= f.datetime_field :pickup_time %>
+	  <%= f.datetime_select :pickup_time %>
   </div>
 
-  <% f.hidden_field :user_id, value: @driver.id %>
+  <%= f.hidden_field :user_id, value: @driver.id %>
 
   <div class="action">
 	  <%= f.submit "Create Trip" %>

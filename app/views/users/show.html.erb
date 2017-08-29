@@ -1,6 +1,7 @@
 <h3>Trips</h3>
 <% @user.trips.each do |trip| %>
 	<p>
-		<%= trip.pickup_time %>
+		<%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
+		<%= link_to "View Trip", trips_show_path(trip.id) %>
 	</p>
 <% end %>
