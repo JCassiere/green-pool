@@ -1,8 +1,8 @@
-<h1 class="mb-4" align="center"><strong>Signup</strong></h1>
+<!-- <h1 class="mb-4" align="center"><strong>Signup</strong></h1> -->
 
 <%= form_for :user, url: '/users' do |f| %>
 
-  <div class="field" align="center">
+  <div class="field mt-4" align="center">
 	  <%= f.label :first_name, "First Name" %>
 	  <%= f.text_field :first_name, class: "form-control col-8 mb-4" %>
   </div>
@@ -54,11 +54,11 @@
 
   <div class="field" align="center">
   	<%= f.label :avatar, "Profile Picture" %>
-	  <%= f.file_field :avatar, class: "form-control col-8 mb-4" %>
+	  <%= f.file_field :avatar, class: "form-control col-8 mb-4 btn-light" %>
   </div>
 
   <div class="action" align="center">
-	  <button><%= f.submit "Submit", class: "btn" %></button>
+	  <button class="btn col-8"><%= f.submit "Submit", class: "btn" %></button>
   </div>
 
 <% end %>
