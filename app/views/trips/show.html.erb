@@ -1,3 +1,3 @@
-<h1>Trips#show</h1>
-
-<%=  %>
+<h3><%= @trip.user.full_name %>'s Trip</h3>
+<%= @trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
+<%= "Space left for #{@trip.remaining_space} bags" %>

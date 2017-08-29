@@ -55,3 +55,55 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+def dummy_user
+  visit(signup_path)
+
+  fill_in "First Name", with: "Random"
+  fill_in "Last Name", with: "Person"
+  fill_in "Email", with: "fakeemail@gmail.com"
+  fill_in "Password", with: "password"
+  fill_in "Password Confirmation", with: "password"
+
+  fill_in "Street", with: "549 NW 28th St."
+  fill_in "City", with: "Miami"
+  fill_in "State", with: "FL"
+  fill_in "Zip/Postal Code", with: "33127"
+  fill_in "Country", with: "US"
+
+  attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
+  click_button "Submit"
+  
+  User.find_by(email: "fakeemail@gmail.com")
+end
+
+def dummy_user_model
+  User.new(
+  first_name: "Random", 
+  last_name: "Person", 
+  email: "fakeemail@gmail.com", 
+  password_digest: "password",
+  avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+  street: "549 NW 28th St.",
+  city: "Miami",
+  state: "FL",
+  zip_code: "33127",
+  country: "USA"
+  )
+end
+
+def select_date(date, options = {})
+  field = options[:from]
+  base_id = find(:xpath, ".//label[contains(.,'#{field}')]")[:for]
+  year, month, day = date.split(',')
+  select year,  :from => "#{base_id}_1i"
+  select month, :from => "#{base_id}_2i"
+  select day,   :from => "#{base_id}_3i"
+end
+
+def select_time(hour, minute, options = {})
+  field = options[:from]
+  base_id = find(:xpath, ".//label[contains(.,'#{field}')]")[:for]
+  select hour, :from => "#{base_id}_4i"
+  select minute, :from => "#{base_id}_5i"
+end

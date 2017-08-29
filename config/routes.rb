@@ -5,9 +5,12 @@ Rails.application.routes.draw do
 
   get 'pickups/show'
 
-  get 'trips/new'
+  get '/trips/new' => 'trips#new'
 
-  get 'trips/show'
+  post '/trips' => 'trips#create'
+
+
+  get 'trips/:id' => 'trips#show', as: "trips_show"
 
   get 'trips' => 'trips#index', as: "trips_index"
 
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
 
   get '/logout' => 'sessions#destroy'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
