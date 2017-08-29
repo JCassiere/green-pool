@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "Userpages", type: :feature do
   before :all do
-    @user = User.create!(name: Faker::Name.name, email: Faker::Internet.email, address: "#{Faker::Address.street_address} #{Faker::Address.city},#{Faker::Address.state_abbr} #{Faker::Address.zip}", credit_count: 3, password_digest: Faker::DragonBall.character)
+    @user = User.create!(
+      name: Faker::Name.name, 
+      email: Faker::Internet.email, 
+      address: "#{Faker::Address.street_address} #{Faker::Address.city},#{Faker::Address.state_abbr} #{Faker::Address.zip}", credit_count: 3, password_digest: Faker::DragonBall.character)
   end
 
   it "I should be able to go to the homepage and see the link to go to my profile" do
