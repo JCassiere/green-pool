@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.feature "Userpages", type: :feature do
   before :all do
-    @user = User.create!(
-      name: Faker::Name.name, 
-      email: Faker::Internet.email, 
-      address: "#{Faker::Address.street_address} #{Faker::Address.city},#{Faker::Address.state_abbr} #{Faker::Address.zip}", credit_count: 3, password_digest: Faker::DragonBall.character)
+    dummy_user
   end
 
-  it "I should be able to go to the homepage and see the link to go to my profile" do
-    visit '/'
-    expect(page).to have_content('Profile')
-    find_link('Profile').click
+  it "I should be able to go to the homepage and see the link to go to my profile if logged in" do
+    visit(login_path)
+    fill_in "Email", with: "fakeemail@gmail.com"
+    fill_in "Password", with: "password"
+    click_button "Login2"
+    expect(page).to have_content(dummy_user.first_name)
+    find_link(dummy_user.first_name).click
   end
 
   context 'a users profile' do
@@ -58,7 +58,6 @@ RSpec.feature "Userpages", type: :feature do
     it "userpage should allow user to logout and be redirected to homepage after signing up and logging in" do
       visit user_path(@user)
       find_link('Login').click
-      save_and_open_page
       fill_in(text_field_tag, :with => @user.email)
       fill_in(password_field_tag, :with => @user.password_digest)
       click('Submit')
