@@ -1,21 +1,21 @@
-<%= @driver.full_name %>'s Trip
+<h3 class="mt-4 mb-4" align="center"><%= @driver.full_name %>'s Trip</h3>
 
 <%= form_for :trip, url: '/trips' do |f| %>
 
-  <div class="field">
+  <div class="field" align="center">
 	  <%= f.label :total_space, "Total Space" %>
-	  <%= f.text_field :total_space %>
+	  <%= f.text_field :total_space, class: "form-control col-8 mb-4" %>
   </div>
 
-	<div class="field">
+	<div class="field" align="center">
 	  <%= f.label :pickup_time, "Pickup Time" %>
-	  <%= f.datetime_select :pickup_time %>
+	  <%= f.datetime_select :pickup_time, class: "form-control col-8 mb-4" %>
   </div>
 
   <%= f.hidden_field :user_id, value: @driver.id %>
 
-  <div class="action">
-	  <%= f.submit "Create Trip" %>
+  <div class="action" align="center">
+	  <%= f.submit "Create Trip", class: "form-control btn col-8 mb-4" %>
   </div>
 
 <% end %>
