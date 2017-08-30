@@ -73,15 +73,15 @@ def dummy_user
 
   attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
   click_button "Submit"
-  
+
   User.find_by(email: "fakeemail@gmail.com")
 end
 
 def dummy_user_model
   User.new(
-  first_name: "Random", 
-  last_name: "Person", 
-  email: "fakeemail@gmail.com", 
+  first_name: "Random",
+  last_name: "Person",
+  email: "fakeemail@gmail.com",
   password_digest: "password",
   avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
   street: "549 NW 28th St.",
@@ -89,6 +89,21 @@ def dummy_user_model
   state: "FL",
   zip_code: "33127",
   country: "USA"
+  )
+end
+
+def dummy_recycler
+  User.new(
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  email: Faker::Internet.email,
+  password_digest: Faker::DragonBall.character,
+  avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+  street: Faker::Address.street_address,
+  city: Faker::Address.city,
+  state: Faker::Address.state_abbr,
+  zip_code: Faker::Address.zip,
+  country: Faker::Address.country
   )
 end
 
