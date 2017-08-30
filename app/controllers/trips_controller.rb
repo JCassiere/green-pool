@@ -3,6 +3,7 @@ class TripsController < ApplicationController
   
   def new
   	@driver = current_user
+    @now = Time.now.strftime("%FT%R")
   end
 
   def show
