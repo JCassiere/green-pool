@@ -26,14 +26,7 @@ class PickupsController < ApplicationController
 
   def update_status
     pickup = Pickup.find(params[:id])
-    case pickup.status
-    when "created"
-      pickup.accepted!
-    when "accepted"
-      pickup.picked_up!
-    when "picked_up"
-      pickup.completed!
-    end
+    pickup.update_status
     redirect_to trip_path(pickup.trip.id)
   end
 
