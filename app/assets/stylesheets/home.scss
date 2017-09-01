@@ -2,29 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body,
+.container{
+	min-height: 100vh;
+}
+
 #notice {
 	margin-top: 20px;
 }
 
-.buttons {
-	width: 100%;
-	position:fixed !important;
-	position:absolute;
-	top:70px;
-	right:0;
-	bottom:0;
-	left:0;
+#verti {
+	margin: 34% auto;
+}
+
+.col {
 	display: flex;
-	align-items: center;
 	flex-wrap: wrap;
-	align-content: center;
 	justify-content: center;
+	padding: 0;
 }
 
 .btn a {
 	margin-top: 0;
 	color: white;
 	text-decoration: none;
+	text-align: center;
 }
 
 .btn-lg {
