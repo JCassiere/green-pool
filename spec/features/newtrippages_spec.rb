@@ -15,12 +15,15 @@ RSpec.feature "Newtrippages", type: :feature do
     it "should show user's name" do
       expect(page).to have_content(@driver.first_name)
     end
+
     it "should show space available form" do
       expect(page).to have_css('input[name="trip[total_space]"]')
     end
+
     it "should show date form" do
       expect(page).to have_css('select[name="trip[pickup_time(1i)]"]')
     end
+
     it "should have a create trip button" do
       expect(find_button('Create Trip').visible?).to be true
     end

@@ -77,6 +77,39 @@ def dummy_user
   User.find_by(email: "fakeemail@gmail.com")
 end
 
+def faker_dummy
+  user = User.new(
+    first_name: Faker::Name.first_name, 
+    last_name: Faker::Name.last_name, 
+    email: Faker::Internet.email, 
+    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+    street: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    zip_code: Faker::Address.zip_code,
+    country: Faker::Address.country_code
+  )
+  password = Faker::Internet.password
+  user.password = password
+  user.password_confirmation = password
+  user.save
+  user
+end
+
+def dummy_user_model
+  user = User.new(
+    first_name: "Random", 
+    last_name: "Person", 
+    email: "fakeemail@gmail.com", 
+    password_digest: "password",
+    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+    street: "549 NW 28th St.",
+    city: "Miami",
+    state: "FL",
+    zip_code: "33127",
+    country: "USA"
+end
+
 def dummy_driver
   User.new(
   first_name: Faker::Name.first_name,
@@ -104,7 +137,10 @@ def dummy_recycler
   state: Faker::Address.state_abbr,
   zip_code: Faker::Address.zip,
   country: Faker::Address.country
-  )
+  user.password = "password"
+  user.password_confirmation = "password"
+  user.save
+  user
 end
 
 def select_date(date, options = {})

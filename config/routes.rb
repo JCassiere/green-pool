@@ -2,23 +2,29 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get 'pickups/new'
+  resources :trips do
+    resources :pickups, shallow: true
+  end
 
-  get 'pickups/show'
+  get 'pickups/:id/update' => 'pickups#update_status', as: "pickups_update"
 
-  get '/trips/new' => 'trips#new'
+  # get 'pickups/new'
 
-  post '/trips' => 'trips#create'
+  # get 'pickups/show'
+
+  # get '/trips/new' => 'trips#new'
+
+  # post '/trips' => 'trips#create'
 
 
-  get 'trips/:id' => 'trips#show', as: "trips_show"
+  # get 'trips/:id' => 'trips#show', as: "trips_show"
 
 
   #get 'users/:id' => 'users#show', as: 'user'
 
-  get 'trips' => 'trips#index', as: "trips_index"
+  # get 'trips' => 'trips#index', as: "trips_index"
 
-  get 'users/:id' => 'users#show', as: "users_show"
+  get 'users/show'
 
   get 'users/new'
 

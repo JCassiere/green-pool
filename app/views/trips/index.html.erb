@@ -1,2 +1,11 @@
-<h1>Trips#index</h1>
-<p>Find me in app/views/trips/index.html.erb</p>
+<% @trips.each do |trip| %>
+	<% unless trip.remaining_space == 0 %>
+	  <div>
+	    Scheduled for <%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
+	    <%= trip.driver_name %>
+	    <%= trip.start_address %>
+	    Space Remaining: <%= trip.remaining_space %>
+	    <%= link_to "Add Recycling", new_trip_pickup_path(trip.id) %>
+	  </div>
+	<% end %>
+<% end %>

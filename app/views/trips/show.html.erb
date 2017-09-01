@@ -1,3 +1,28 @@
 <h3><%= @trip.user.full_name %>'s Trip</h3>
-<%= @trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
+<%= @trip.pickup_time.localtime.strftime("%B %e, %Y at %l:%M %p") %>
 <%= "Space left for #{@trip.remaining_space} bags" %>
+
+<%= flash.notice %>
+
+<% if @trip.pickups.length > 0 %>
+  <h3>Pickups</h3>
+  <% @trip.pickups.each do |pickup| %>
+    <% unless pickup.completed? %>
+      <div>
+  	    <%= pickup.recycler_name %>
+  	    <%= pickup.address %>
+  	    Number of Bags: <%= pickup.num_bags %>
+  	    <% case pickup.status %>
+  	    <% when "created" %>
+
+          <%= button_to "Accept", pickups_update_path(pickup.id), method: :get, :confirm => 'Accept Pickup?' %>
+          <%= button_to "Deny", pickup_path(pickup.id), method: :delete, :confirm => 'Deny Pickup?' %>
+        <% when "accepted" %>
+          <%= link_to "Complete", pickups_update_path(pickup.id), :confirm => 'Pickup Completed?' %>
+        <% when "picked_up" %>
+          Pending
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

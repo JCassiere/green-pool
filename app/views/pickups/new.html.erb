@@ -1,2 +1,13 @@
-<h1>Pickups#new</h1>
-<p>Find me in app/views/pickups/new.html.erb</p>
+<%= form_for :pickup, url: "/trips/#{@trip.id}/pickups" do |f| %>
+
+	<%= f.label :num_bags, "Number of Bags" %>
+  <%= f.number_field(:num_bags, in: 1..@trip.remaining_space, step: 1) %>
+
+  <%= f.hidden_field :user_id, value: @user.id%>
+  <%= f.hidden_field :trip_id, value: @trip.id %>
+
+  <%= f.submit "Add My Recycling to #{@trip.driver_first_name}'s Trip" %>
+
+<% end %>
+
+<%#= console %>

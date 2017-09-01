@@ -2,10 +2,9 @@ class UsersController < ApplicationController
   before_action :authorize, :except => [:create, :new]
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
     @trips = @user.trips
-    #@user = current_user
-
   end
 
   def new
