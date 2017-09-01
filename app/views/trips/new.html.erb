@@ -1,21 +1,33 @@
-<%= @driver.full_name %>'s Trip
+<h3 class="mt-4 mb-4" align="center"><%= @driver.first_name %>'s Trip</h3>
 
 <%= form_for :trip, url: '/trips' do |f| %>
+<div class="container">
+	<div class="row">
+	  <div class="field col-10" align="center">
+		  <%= f.label :total_space, "Total Space" %>
+		  <%= f.text_field :total_space, class: "form-control mb-4" %>
+	  </div>
+	 </div>
+	  <div class="form-group row">
+		<div class="field col-10" align="center">
+		  <%= f.label :pickup_time, "Pickup Time" %>
+		  <%= f.datetime_field :pickup_time, min: Date.today, value: @now, class: "form-control mb-4" %>
+	    </div>
+	   </div>
+	  <%= f.hidden_field :user_id, value: @driver.id %>
 
-  <div class="field">
-	  <%= f.label :total_space, "Total Space" %>
-	  <%= f.text_field :total_space %>
+	<div class="row">
+		  <div class="action col-10" align="center">
+			  <%= f.submit "Create Trip", class: "form-control btn mb-4 white-btn" %>
+		  </div>
+  	</div>
+</div>
+
+<div class="form-group row">
+  <label for="example-datetime-local-input" class="col-2 col-form-label">Date and time</label>
+  <div class="col-10">
+    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
   </div>
-
-	<div class="field">
-	  <%= f.label :pickup_time, "Pickup Time" %>
-	  <%= f.datetime_select :pickup_time %>
-  </div>
-
-  <%= f.hidden_field :user_id, value: @driver.id %>
-
-  <div class="action">
-	  <%= f.submit "Create Trip" %>
-  </div>
+</div>
 
 <% end %>

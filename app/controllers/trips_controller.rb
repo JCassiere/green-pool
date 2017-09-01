@@ -1,8 +1,9 @@
 class TripsController < ApplicationController
   before_action :authorize
-  
+
   def new
   	@driver = current_user
+    @now = Time.now.strftime("%FT%R")
   end
 
   def show
@@ -21,6 +22,9 @@ class TripsController < ApplicationController
   private
   def trip_params
     params.require(:trip).permit(:total_space, :pickup_time, :user_id)
+  end
+
+  def authorize
   end
 
 end

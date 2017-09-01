@@ -2,13 +2,18 @@ require 'rails_helper'
 
 RSpec.feature "Newtrippages", type: :feature do
   before(:each) do
-    @user = dummy_user
+    @driver = dummy_user
+    visit login_path
+    fill_in "Email", with: @driver.email
+    fill_in "Password", with: @driver.password_digest
+    click_button("Login2")
+    visit root_path
     click_link("Schedule Trip")
   end
 
   describe "clicking new trip link" do
     it "should show user's name" do
-      expect(page).to have_content(@user.full_name)
+      expect(page).to have_content(@driver.first_name)
     end
 
     it "should show space available form" do

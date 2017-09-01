@@ -2,19 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.form-group {
-	position:fixed !important;
-	position:absolute;
-	top:70px;
-	right:0;
-	bottom:0;
-	left:0;
-	display: flex;
-	align-items: center;
+body,
+.container{
+	min-height: 100vh;
 }
 
 .form-group form {
 	width: 100%;
+}
+
+#vert {
+	margin: 34% auto;
 }
 
 .btn-primary {
@@ -30,4 +28,10 @@
 
 .action {
 	margin-bottom: 20px;
+}
+
+.btn-light {
+    color: #111;
+    background-color: #FFFF01;
+    border-color: #FFFF01;
 }

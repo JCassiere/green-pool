@@ -1,6 +1,7 @@
-<p>Hello, <%= @user.full_name%>!</p>
+<h1>Users#show</h1>
+<p>Hello, <%= @user.first_name %>!</p>
 
-<p>Credit count: <%= @user.credit_count%></p>
+<h4 class="mt-4" align="center">Credit count: <%= @user.credit_count%></h4>
 
 <%# @trips.each do |trip| %>
   <%# trip.pickups.each do |x| %>
@@ -9,11 +10,14 @@
 <%#end%>
 
 <% if @user.trips.length > 0 %>
-	<h3>Trips</h3>
+  <h3 class="mt-4 mb-4" align="center">Trips</h3>
 	<% @user.trips.each do |trip| %>
 		<div>
-			<%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
-			<%= link_to "View Trip", trip_path(trip.id) %>
+      <p class="mt-4 mb-4" align="center">
+		    <span class="align-middle" id="text"><%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %></span>
+		    <span><button class="btn col-9" id="button"><%= link_to "View Trip", trips_show_path(trip.id) %></button></span>
+      </p>
+      <hr>
 			Pickups: <%= trip.pickups.count %>
 		</div>
 	<% end %>
