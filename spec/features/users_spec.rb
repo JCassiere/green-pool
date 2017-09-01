@@ -37,14 +37,15 @@ RSpec.feature "Users", type: :feature do
         visit(login_path)
         fill_in "Email", with: "fakeemail@gmail.com"
         fill_in "Password", with: "password"
-        click_button "Submit"
+        click_button "Login2"
         expect(page).to have_content("Hello, Random!")
       end
 
       it "should return to the login page with invalid credentials" do
+        save_and_open_page
         fill_in "Email", with: Faker::Internet.email
         fill_in "Password", with: Faker::Internet.password(8)
-        click_button "Submit"
+        click_button "Login2"
         expect(page).to have_content("That email/password combination is not valid!")
       end
     end
