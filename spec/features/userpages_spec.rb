@@ -32,20 +32,15 @@ RSpec.feature "Userpages", type: :feature do
       expect(page).to have_content("View Trip")
     end
 
-    it "user page should show pending pickups" do
-      recycler = dummy_recycler
-      recycler.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
-      recycler.trips.last.pickups.create(num_bags: 3, user: @user)
-      visit users_show_path
-      expect(page).to have_content("Driver Pick ups pending: #{recycler.driver_pickups.last.id}")
-    end
 
-    it "recycler page should show pending pickups" do
-      @user.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
-      recycler = dummy_recycler
-      @user.trips.last.pickups.create(num_bags: 3, user: recycler)
-      visit users_show_path(recycler)
-      expect(page).to have_content("Recycling Pick ups pending: #{recycler.recycling_pickups.last.id}")
+
+    it "user page should show pending pickups" do
+      driver = faker_dummy
+      trip = driver.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
+      trip.pickups.create(num_bags: 3, user: @user)
+      visit users_show_path
+      expect(page).to have_content(driver.full_name)
+      expect(page).to have_content("Number of Bags: 3")
     end
 
 

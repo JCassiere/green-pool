@@ -75,6 +75,16 @@ def dummy_user_signup
   click_button "Submit"
 end
 
+# def dummy_user_login
+#   dummy_user_signup
+#   visit login_path
+#   fill_in "Email", with: dummy_user.email
+#   fill_in "Password", with: "password"
+#   expect(find_button('Login').visible?).to be true
+#   click_button("Log In")
+#   User.find_by(email: "fakeemail@gmail.com")
+# end
+
 def dummy_user
   dummy_user_signup
   User.find_by(email: "fakeemail@gmail.com")
@@ -82,9 +92,9 @@ end
 
 def faker_dummy
   user = User.new(
-    first_name: Faker::Name.first_name, 
-    last_name: Faker::Name.last_name, 
-    email: Faker::Internet.email, 
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: Faker::Address.street_address,
     city: Faker::Address.city,
@@ -101,9 +111,9 @@ end
 
 def dummy_user_model
   user = User.new(
-    first_name: "Random", 
-    last_name: "Person", 
-    email: "fakeemail@gmail.com", 
+    first_name: "Random",
+    last_name: "Person",
+    email: "fakeemail@gmail.com",
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: "549 NW 28th St.",
     city: "Miami",
