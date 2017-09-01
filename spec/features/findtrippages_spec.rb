@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "Find Trip Page", type: :feature do
   context "a signed in user adds recycling to a trip" do
     before(:each) do
+      # p dummy_user
       @user = dummy_user
     end
 
@@ -17,6 +18,7 @@ RSpec.feature "Find Trip Page", type: :feature do
       end
 
       it "I should be able to go to the homepage and see the find trip link" do
+        p current_path
         expect(find_link('Have Your Recycling Picked Up').visible?).to be true
       end
 

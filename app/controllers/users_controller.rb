@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   	if @user.save
   		session[:user_id] = @user.id
   		redirect_to '/', notice: "Welcome, #{@user.first_name}!"
-
   	else
       flash[:error] = 'An error occured!'
   		render 'new'
@@ -39,7 +38,4 @@ class UsersController < ApplicationController
         :country
         )
   	end
-
-    def authorize
-    end
 end

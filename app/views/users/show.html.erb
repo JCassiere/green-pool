@@ -15,7 +15,7 @@
 		<div>
       <p class="mt-4 mb-4" align="center">
 		    <span class="align-middle" id="text"><%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %></span>
-		    <span><button class="btn col-9" id="button"><%= link_to "View Trip", trips_show_path(trip.id) %></button></span>
+		    <span><button class="btn col-9" id="button"><%= link_to "View Trip", trip_path(trip.id) %></button></span>
       </p>
       <hr>
 			Pickups: <%= trip.pickups.count %>

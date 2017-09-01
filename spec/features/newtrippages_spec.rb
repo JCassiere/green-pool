@@ -6,7 +6,7 @@ RSpec.feature "Newtrippages", type: :feature do
     visit login_path
     fill_in "Email", with: @driver.email
     fill_in "Password", with: @driver.password_digest
-    click_button("Login2")
+    click_button("Log In")
     visit root_path
     click_link("Schedule Trip")
   end
@@ -21,7 +21,7 @@ RSpec.feature "Newtrippages", type: :feature do
     end
 
     it "should show date form" do
-      expect(page).to have_css('select[name="trip[pickup_time(1i)]"]')
+      expect(page).to have_css('input[name="trip[pickup_time]"]')
     end
 
     it "should have a create trip button" do
@@ -32,13 +32,12 @@ RSpec.feature "Newtrippages", type: :feature do
   describe "after creating a trip" do
     before(:each) do
       fill_in "Total Space", with: 5
-      select_date("2018,September,5", :from => "Pickup Time")
-      select_time("14", "00", :from => "Pickup Time")
+      fill_in "Pickup Time", with: "2018-09-02T22:30"
       click_button("Create Trip")
     end
 
     it "the user should now have a new trip on their user page" do
-      expect(page).to have_content("September 5, 2018 at 2:00 PM")
+      expect(page).to have_content("September 2, 2018 at 10:30 PM")
     end
 
     describe "when visiting the driver trip page" do
@@ -51,7 +50,7 @@ RSpec.feature "Newtrippages", type: :feature do
       end
 
       it "should display the trip's date" do
-        expect(page).to have_content("September 5, 2018 at 2:00 PM")
+        expect(page).to have_content("September 2, 2018 at 10:30 PM")
       end
 
       it "should show the space remaining for the trip" do
