@@ -1,28 +1,30 @@
-
-<h1>Users#show</h1>
-<!-- <p>Hello, <#=@user.name%>!</p> -->
-<%#@user.trips.each do |t|%>
-<!-- <p>Trip: <#=t.id%></p> -->
-<%#end%>
-
-
-<% @trips.each do |t| %>
-  <% t.pickups.each do |x| %>
-    <p>Pick ups pending: <%=x.id%></p>
-  <%end%>
-<%end%>
-
-<% @user.recycling_pickups.each do |t| %>
-  <p>Pick ups pending: <%=t.id%></p>
-<%end%>
+<p>Hello, <%= @user.full_name%>!</p>
 
 <p>Credit count: <%= @user.credit_count%></p>
 
-<h3>Trips</h3>
-<% @user.trips.each do |trip| %>
-	<p>
-		<%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
-		<%= link_to "View Trip", trips_show_path(trip.id) %>
-	</p>
+<%# @trips.each do |trip| %>
+  <%# trip.pickups.each do |x| %>
+    <!-- <p>Pick ups pending: <%#=x.id%></p> -->
+  <%#end%>
+<%#end%>
+
+<% if @user.trips.length > 0 %>
+	<h3>Trips</h3>
+	<% @user.trips.each do |trip| %>
+		<div>
+			<%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
+			<%= link_to "View Trip", trip_path(trip.id) %>
+			Pickups: <%= trip.pickups.count %>
+		</div>
+	<% end %>
 <% end %>
 
+<% if @user.recycling_pickups.length > 0 %>
+	<h3>Pickups</h3>
+	<% @user.recycling_pickups.each do |pickup| %>
+		<div>
+			<%= pickup.driver_name %>
+			Number of Bags: <%= pickup.num_bags %>
+		</div>
+	<%end%>
+<% end %>

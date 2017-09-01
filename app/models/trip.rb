@@ -7,10 +7,14 @@ class Trip < ApplicationRecord
 	end
 
 	def remaining_space
-		self.total_space - self.pickups.count
+		self.total_space - self.pickups.sum(:num_bags)
 	end
 
 	def driver_name
 		self.user.full_name
+	end
+
+	def driver_first_name
+		self.user.first_name
 	end
 end

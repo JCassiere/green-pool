@@ -10,11 +10,12 @@ class TripsController < ApplicationController
   end
 
   def index
+    @trips = Trip.all
   end
 
   def create
-    @trip = Trip.create(trip_params)
-    redirect_to "/users/#{current_user.id}"
+    Trip.create(trip_params)
+    redirect_to users_show_path
   end
 
   private
