@@ -24,7 +24,4 @@ class TripsController < ApplicationController
     params.require(:trip).permit(:total_space, :pickup_time, :user_id)
   end
 
-  def authorize
-  end
-
 end

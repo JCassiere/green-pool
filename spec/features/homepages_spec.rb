@@ -18,7 +18,7 @@ RSpec.feature "Homepages", type: :feature do
   	assert_equal "/trips/new", current_path
   end
 
-  it "I should not be able to go to the new trip page after I click the start trip button if i am not logged in" do
+  it "should not be able to go to the new trip page after I click the start trip button if i am not logged in" do
   	click_link "Logout"
   	visit("/")
   	click_link "Schedule Trip"
