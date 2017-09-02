@@ -9,7 +9,7 @@ RSpec.feature "Users", type: :feature do
     end
   end
 
-  describe "to create a new user" do
+  describe "when creating a new user" do
     before(:each) do
       @user = dummy_user
     end

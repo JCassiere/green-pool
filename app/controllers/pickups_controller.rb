@@ -11,8 +11,8 @@ class PickupsController < ApplicationController
   end
 
   def create
-  	Pickup.create(trip_params)
-  	redirect_to users_show_path
+  	pickup = Pickup.create(trip_params)
+  	redirect_to users_show_path(pickup.user_id)
   end
 
   def destroy

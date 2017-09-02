@@ -72,7 +72,7 @@ RSpec.feature "Find Trip Page", type: :feature do
           end
 
           it "should redirect to the user's page" do
-            assert_equal "/users/show", current_path
+            assert_equal "/users/#{@user.id}", current_path
           end
 
           it "the driver for the pickup should appear on the user's page" do
@@ -111,7 +111,7 @@ RSpec.feature "Find Trip Page", type: :feature do
           num_bags: 2,
           trip_id: @trip.id
         )
-        visit users_show_path
+        visit users_show_path(@user.id)
         click_link("View Trip")
       end
 
@@ -135,7 +135,7 @@ RSpec.feature "Find Trip Page", type: :feature do
         fill_in "Email", with: @other_user.email
         fill_in "Password", with: @other_user.password
         click_button("Log In")
-        visit(users_show_path)
+        visit(users_show_path(@other_user.id))
         expect(page).to have_content(@user.full_name)
         expect(page).to have_content("Number of Bags: 2")
       end
@@ -160,7 +160,7 @@ RSpec.feature "Find Trip Page", type: :feature do
           fill_in "Email", with: @other_user.email
           fill_in "Password", with: @other_user.password
           click_button("Log In")
-          visit(users_show_path)
+          visit(users_show_path(@other_user.id))
           expect(page).to_not have_content(@other_user.address)
           expect(page).to_not have_content("Number of Bags: 2")
         end
