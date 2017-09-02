@@ -17,12 +17,12 @@ RSpec.feature "Find Trip Page", type: :feature do
       end
 
       it "I should be able to go to the homepage and see the find trip link" do
-        expect(find_link('Have Your Recycling Picked Up').visible?).to be true
+        expect(find_button('Have Your Recycling Picked Up').visible?).to be true
       end
 
       describe "on the find trip page" do
         before(:each) do
-          click_link('Have Your Recycling Picked Up')
+          click_button('Have Your Recycling Picked Up')
         end
 
         it "a trip's driver should be visible" do
@@ -43,12 +43,12 @@ RSpec.feature "Find Trip Page", type: :feature do
         end
 
         it "I should be able to press a button to add my recycling to a trip" do
-          expect(find_link('Add Recycling').visible?).to be true
+          expect(find_button('Add Recycling').visible?).to be true
         end
         
         describe "after clicking the Add Recycling button" do
           before(:each) do
-            click_link("Add Recycling")
+            click_button("Add Recycling")
           end
 
           it "should redirect to the new trip pickup page" do
@@ -60,15 +60,15 @@ RSpec.feature "Find Trip Page", type: :feature do
           end
 
           it "should have a button to add a pickup to a trip" do
-            expect(find_button("Add My Recycling to #{@other_user.first_name}'s Trip").visible?).to be true
+            expect(find_button("Add to #{@other_user.first_name}'s Trip").visible?).to be true
           end
         end
 
         describe "after creating a pickup for a trip" do
           before(:each) do
-            click_link("Add Recycling")
+            click_button("Add Recycling")
             fill_in "Number of Bags", with: 2
-            click_button("Add My Recycling to #{@other_user.first_name}'s Trip")
+            click_button("Add to #{@other_user.first_name}'s Trip")
           end
 
           it "should redirect to the user's page" do
@@ -89,9 +89,9 @@ RSpec.feature "Find Trip Page", type: :feature do
           end
           it "the trip should disappear from the find trip page if the space available has been reached" do
             visit(trips_path)
-            click_link("Add Recycling")
+            click_button("Add Recycling")
             fill_in "Number of Bags", with: 3
-            click_button("Add My Recycling to #{@other_user.first_name}'s Trip")
+            click_button("Add to #{@other_user.first_name}'s Trip")
             visit(trips_path)
             expect(page).to_not have_content(@other_user.full_name)
           end
@@ -112,7 +112,7 @@ RSpec.feature "Find Trip Page", type: :feature do
           trip_id: @trip.id
         )
         visit users_show_path(@user.id)
-        click_link("View Trip")
+        click_button("View Trip")
       end
 
       it "should have a pickup with a recycler name" do
@@ -173,7 +173,7 @@ RSpec.feature "Find Trip Page", type: :feature do
 
         it "should show a 'Complete' button after the trip has been accepted" do
           click_button("Accept")
-          expect(find_link("Complete").visible?).to be true
+          expect(find_button("Complete").visible?).to be true
         end
       end
 

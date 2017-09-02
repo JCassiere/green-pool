@@ -18,7 +18,7 @@
           <%= button_to "Accept", pickups_update_path(pickup.id), data: {confirm: 'Accept Pickup?'} %>
           <%= button_to "Deny", pickup_path(pickup.id), method: :delete, data: {confirm: 'Deny Pickup?'} %>
         <% when "accepted" %>
-          <%= link_to "Complete", pickups_update_path(pickup.id), data: {confirm: 'Pickup Completed?'} %>
+          <%= button_to "Complete", pickups_update_path(pickup.id), data: {confirm: 'Pickup Completed?'} %>
         <% when "picked_up" %>
           Pending
         <% end %>

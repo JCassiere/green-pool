@@ -15,8 +15,14 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(trip_params)
-    redirect_to users_show_path(@trip.user_id)
+    trip = Trip.new(trip_params)
+    if trip.save
+      flash[:notice] = "New trip created"
+      redirect_to users_show_path(trip.user_id)
+    else
+      flash[:alert] = "No trip created - please try again"
+      redirect_to new_trip_path
+    end
   end
 
   private

@@ -1,3 +1,5 @@
+<%= flash.alert %>
+
 <%= form_for :pickup, url: "/trips/#{@trip.id}/pickups" do |f| %>
 
 	<%= f.label :num_bags, "Number of Bags" %>
@@ -6,7 +8,7 @@
   <%= f.hidden_field :user_id, value: @user.id%>
   <%= f.hidden_field :trip_id, value: @trip.id %>
 
-  <%= f.submit "Add My Recycling to #{@trip.driver_first_name}'s Trip" %>
+  <%= f.submit "Add to #{@trip.driver_first_name}'s Trip", class: "btn btn-primary col-9 mb-4 btn-lg", align: "center" %>
 
 <% end %>
 

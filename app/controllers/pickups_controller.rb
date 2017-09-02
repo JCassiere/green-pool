@@ -11,8 +11,14 @@ class PickupsController < ApplicationController
   end
 
   def create
-  	pickup = Pickup.create(trip_params)
-  	redirect_to users_show_path(pickup.user_id)
+  	pickup = Pickup.new(trip_params)
+    if pickup.save
+      flash[:notice] = "New pickup created"
+  	  redirect_to users_show_path(pickup.user_id)
+    else
+      flash[:alert] = "No pickup created - please try again"
+      redirect_to new_trip_pickup_path(pickup.trip_id)
+    end
   end
 
   def destroy
