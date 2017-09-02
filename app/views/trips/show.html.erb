@@ -2,6 +2,8 @@
 <%= @trip.pickup_time.localtime.strftime("%B %e, %Y at %l:%M %p") %>
 <%= "Space left for #{@trip.remaining_space} bags" %>
 
+<%= button_to "Cancel Trip", trip_path(@trip.id), method: :delete, data: {confirm: 'Deny Pickup?'} %>
+
 <%= flash.notice %>
 
 <% if @trip.pickups.length > 0 %>

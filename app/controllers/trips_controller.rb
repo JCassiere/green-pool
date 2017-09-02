@@ -25,6 +25,14 @@ class TripsController < ApplicationController
     end
   end
 
+  def destroy
+    trip = Trip.find(params[:id])
+    user_id = trip.user_id
+    trip.destroy
+    flash[:notice] = "Trip cancelled"
+    redirect_to users_show_path(user_id)
+  end
+
   private
   def trip_params
     params.require(:trip).permit(:total_space, :pickup_time, :user_id)
