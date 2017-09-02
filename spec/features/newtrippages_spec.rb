@@ -8,7 +8,7 @@ RSpec.feature "Newtrippages", type: :feature do
     fill_in "Password", with: @driver.password_digest
     click_button("Log In")
     visit root_path
-    click_link("Schedule Trip")
+    click_button("Schedule Trip")
   end
 
   describe "clicking new trip link" do
@@ -42,7 +42,7 @@ RSpec.feature "Newtrippages", type: :feature do
 
     describe "when visiting the driver trip page" do
       before(:each) do
-        click_link("View Trip")
+        click_button("View Trip")
       end
 
       it "should display the driver's name" do
