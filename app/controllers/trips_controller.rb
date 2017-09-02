@@ -15,8 +15,8 @@ class TripsController < ApplicationController
   end
 
   def create
-    Trip.create(trip_params)
-    redirect_to users_show_path
+    @trip = Trip.create(trip_params)
+    redirect_to users_show_path(@trip.user_id)
   end
 
   private

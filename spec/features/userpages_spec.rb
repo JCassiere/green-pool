@@ -16,7 +16,7 @@ RSpec.feature "Userpages", type: :feature do
 
   context 'a users profile' do
     before(:each) do
-      visit users_show_path
+      visit users_show_path(@user.id)
     end
 
     it "userpage should load if logged in" do
@@ -28,7 +28,7 @@ RSpec.feature "Userpages", type: :feature do
         pickup_time: Faker::Date.forward(1),
         total_space: 3
         )
-      visit users_show_path
+      visit users_show_path(@user.id)
       expect(page).to have_content("View Trip")
     end
 
@@ -36,7 +36,7 @@ RSpec.feature "Userpages", type: :feature do
       driver = faker_dummy
       driver.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
       driver.trips.last.pickups.create(num_bags: 3, user: @user)
-      visit users_show_path
+      visit users_show_path(@user.id)
       expect(page).to have_content(driver.full_name)
       expect(page).to have_content("Number of Bags: 3")
     end
