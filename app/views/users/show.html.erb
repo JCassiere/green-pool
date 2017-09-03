@@ -4,12 +4,6 @@
 
 <h4 class="mt-4" align="center">Credit count: <%= @user.credit_count%></h4>
 
-<%# @trips.each do |trip| %>
-  <%# trip.pickups.each do |x| %>
-    <!-- <p>Pick ups pending: <%#=x.id%></p> -->
-  <%#end%>
-<%#end%>
-
 <% if @user.trips.length > 0 %>
   <h3 class="mt-4 mb-4 title-area" align="center">Trips</h3>
 	<% @user.trips.each do |trip| %>
