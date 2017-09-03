@@ -18,27 +18,32 @@
           <%= button_to "Accept", pickups_update_path(pickup.id), method: :get, :confirm => 'Accept Pickup?' %>
           <%= button_to "Deny", pickup_path(pickup.id), method: :delete, :confirm => 'Deny Pickup?' %>
         <% when "accepted" %>
-          <%= link_to "Complete", pickups_update_path(pickup.id), :confirm => 'Pickup Completed?' %>
-        <% when "picked_up" %>
-          <div class="modal">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>All done? Your community thanks you, but more importantly, the Earth does!</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Done</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Complete
+          </button>
+
+          <%= form_tag( pickups_update_path(pickup.id), method: "get") do %>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm That You've Got the Bag!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    All done? Your community thanks you, but more importantly, the Earth does!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Done</button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          </div>
+          <% end %>
+        <% when "picked_up" %>
+          Pending
         <% end %>
       </div>
     <% end %>
