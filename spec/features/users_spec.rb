@@ -9,7 +9,7 @@ RSpec.feature "Users", type: :feature do
     end
   end
 
-  describe "to create a new user" do
+  describe "when creating a new user" do
     before(:each) do
       @user = dummy_user
     end
@@ -48,6 +48,13 @@ RSpec.feature "Users", type: :feature do
         click_button "Log In"
         expect(page).to have_content("That email/password combination is not valid!")
       end
+    end
+  end
+
+  describe "creating a new user using the autopopulated address fields" do
+    it "should still redirect to homepage and see a welcome message after creating an account" do
+      autopopulated_signup
+      click_submit_button
     end
   end
 end

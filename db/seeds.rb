@@ -48,4 +48,8 @@ trip = user_one.trips.create(
 trip.pickups.create(
 	user_id: user_two.id,
 	num_bags: 2
+
 	)
+
+
+

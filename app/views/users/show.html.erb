@@ -1,5 +1,6 @@
-<h1>Users#show</h1>
-<p>Hello, <%= @user.first_name %>!</p>
+<%= flash.notice %>
+
+<h2 class="mt-4" align="center">Hello, <%= @user.first_name %>!</h2>
 
 <h4 class="mt-4" align="center">Credit count: <%= @user.credit_count%></h4>
 
@@ -10,57 +11,81 @@
 <%#end%>
 
 <% if @user.trips.length > 0 %>
-  <h3 class="mt-4 mb-4" align="center">Trips</h3>
+  <h3 class="mt-4 mb-4 title-area" align="center">Trips</h3>
 	<% @user.trips.each do |trip| %>
-		<div>
-      <p class="mt-4 mb-4" align="center">
-		    <span class="align-middle" id="text"><%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %></span>
-		    <span><button class="btn col-9" id="button"><%= link_to "View Trip", trip_path(trip.id) %></button></span>
-      </p>
-      <hr>
-			Pickups: <%= trip.pickups.count %>
+		<div class="card border-info text-center">
+			<div class="card-block trip" align="center">
+				<div class="col col-10" align="center">
+				    <p class="mt-4 col-12 card-text" id="text"><%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %></p>
+				</div>
+				<div class="col col-10" align="center">
+					<p class="mt-4 col-9 card-text" id="text">Pickups: <%= trip.pickups.count %></p>
+				</div>
+				<div class="col col-10" align="center">
+					<button class="btn mt-4 mb-4 col-9 white-btn" id="button"><%= link_to "View Trip", trip_path(trip.id) %></button>
+				</div>
+			</div>
 		</div>
 	<% end %>
 <% end %>
 
 <% if @user.recycling_pickups.length > 0 %>
-	<h3>Pickups</h3>
+	<h3 class="mt-4 mb-4 bgcolor" align="center">Pickups</h3>
 	<% @user.recycling_pickups.each do |pickup| %>
-		<div>
-			<%= pickup.driver_name %>
-			Number of Bags: <%= pickup.num_bags %>
-      <% case pickup.status %>
-        <%when "created"%>
-          Status: Waiting for acceptance
-        <%when "accepted"%>
-          Status: Accepted! Put your bag out for pickup.
-        <%when "picked_up"%>
-          Status: Your bag has been picked up, please confirm!
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Complete
-          </button>
+		<div class="card border-info text-center">
+			<div class="card-block trip" align="center">
+				<div class="col col-10" align="center">
+          <p class="mt-4 col-12 card-text" id="text"><%= pickup.driver_name %></p>
+          </div>
+        
+          	<div class="col col-10" align="center">
+          <p class="mt-4 col-12 card-text" id="text">Number of Bags: <%= pickup.num_bags %></p>
+          </div>
+          <% case pickup.status %>
+            <%when "created"%>
+              Status: Waiting for acceptance
+            <%when "accepted"%>
+              Status: Accepted! Put your bag out for pickup.
+            <%when "picked_up"%>
+              Status: Your bag has been picked up, please confirm!
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Complete
+              </button>
 
-          <%= form_tag( transfer_credit_path(pickup.id), method: "post") do %>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirm that the bag has been picked up!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    All done? Your community thanks you, but more importantly, the Earth does!
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Done</button>
+              <%= form_tag( transfer_credit_path(pickup.id), method: "post") do %>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm that the bag has been picked up!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        All done? Your community thanks you, but more importantly, the Earth does!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Done</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              <%end%>
           <%end%>
-      <%end%>
+<!-- 
+		<div class="card border-info text-center">
+			<div class="card-block trip" align="center">
+				<div class="col col-10" align="center">
+					<p class="mt-4 col-12 card-text" id="text"><%= pickup.driver_name %></p>
+				</div>
+				<div class="col col-10" align="center">
+					<p class="mt-4 mb-4 col-12 card-text" id="text">Number of Bags: <%= pickup.num_bags %></p>
+				</div>
+			</div>
+      
+      
+-->
 		</div>
 	<%end%>
 <% end %>

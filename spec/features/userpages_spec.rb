@@ -16,29 +16,29 @@ RSpec.feature "Userpages", type: :feature do
 
   context 'a users profile' do
     before(:each) do
-      visit users_show_path
+      visit users_show_path(@user.id)
     end
 
-    it "userpage should load if logged in" do
+    it "should load if logged in" do
       expect(page).to have_content("Hello, #{@user.first_name}!")
     end
 
-    it "userpage should show user's trip" do
+    it "should show user's trip" do
       @user.trips.create(
         pickup_time: Faker::Date.forward(1),
         total_space: 3
         )
-      visit users_show_path
-      expect(page).to have_content("View Trip")
+      visit users_show_path(@user.id)
+      expect(find_button('View Trip').visible?).to be true
     end
 
 
 
-    it "user page should show pending pickups" do
+    it "should show pending pickups" do
       driver = faker_dummy
       trip = driver.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
       trip.pickups.create(num_bags: 3, user: @user)
-      visit users_show_path
+      visit users_show_path(@user.id)
       expect(page).to have_content(driver.full_name)
       expect(page).to have_content("Number of Bags: 3")
     end
@@ -49,13 +49,13 @@ RSpec.feature "Userpages", type: :feature do
       expect(page).to have_content("Credit count: #{@user.credit_count}")
     end
 
-    it "userpage should allow user to logout and be redirected to login page after signing up and logging in" do
+    it "should allow user to logout and be redirected to login page after signing up and logging in" do
       visit(login_path)
       fill_in "Email", with: "fakeemail@gmail.com"
       fill_in "Password", with: "password"
       click_button "Log In"
       expect(page).to have_content('Logout')
-      find_link('Logout').click
+      click_link 'Logout'
       expect(page).to have_content('You have successfully logged out.')
     end
 

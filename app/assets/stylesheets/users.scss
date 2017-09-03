@@ -9,6 +9,33 @@
 	text-align: center;
 }
 
+.white-btn a {
+	color: white;
+}
+
 #text {
 	font-size: 22px;
+	padding: 0;
+}
+
+.card {
+	width: 25rem;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+.trip {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+.title-area {
+	padding: 24px 0;
+}
+
+.bgcolor {
+	margin: 0;
+	padding: 24px 0;
+	border-top: solid #009446 10px;
 }

@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   before_action :authorize, :except => [:create, :new]
 
   def show
-    # @user = User.find(params[:id])
-    @user = current_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to "/users/#{@user.id}"
+    end
+    # @user = current_user
     @trips = @user.trips
   end
 

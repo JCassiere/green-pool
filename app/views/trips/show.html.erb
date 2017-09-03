@@ -1,24 +1,34 @@
-<h3><%= @trip.user.full_name %>'s Trip</h3>
-<%= @trip.pickup_time.localtime.strftime("%B %e, %Y at %l:%M %p") %>
-<%= "Space left for #{@trip.remaining_space} bags" %>
+<div class="card border-primary mt-3">
+    <div class="card-header text-white bg-success" align="center">
+        <h3><%= @trip.user.full_name %>'s Trip</h3>
+    </div>
+    <div class="card-text" align="center">
+        <p><%= @trip.pickup_time.localtime.strftime("%B %e, %Y at %l:%M %p") %></p>
+        <p><%= "Space left for #{@trip.remaining_space} bags" %></p>
+    </div>
+
+    <%= button_to "Cancel Trip", trip_path(@trip.id), method: :delete, data: {confirm: 'Deny Pickup?'}, class: "btn col-9 mb-3" %>
+</div>
 
 <%= flash.notice %>
 
 <% if @trip.pickups.length > 0 %>
-  <h3>Pickups</h3>
-  <% @trip.pickups.each do |pickup| %>
-    <% unless pickup.completed? %>
-      <div>
-  	    <%= pickup.recycler_name %>
-  	    <%= pickup.address %>
-  	    Number of Bags: <%= pickup.num_bags %>
-  	    <% case pickup.status %>
-  	    <% when "created" %>
-
-          <%= button_to "Accept", pickups_update_path(pickup.id), method: :get, :confirm => 'Accept Pickup?' %>
-          <%= button_to "Deny", pickup_path(pickup.id), method: :delete, :confirm => 'Deny Pickup?' %>
+<div class="card border-primary mt-3">  
+    <div class="card-header text-white bg-success" align="center">
+        <h3>Pickups</h3>
+    </div>
+      <% @trip.pickups.each do |pickup| %>
+        <% unless pickup.completed? %>
+          <div class="card-text" align="center">
+      	    <p><%= pickup.recycler_name %></p>
+      	    <p><%= pickup.address %></p>
+      	    <p>Number of Bags: <%= pickup.num_bags %><p>
+      	    <% case pickup.status %>
+      	    <% when "created" %>
+              <%= button_to "Accept", pickups_update_path(pickup.id), data: {confirm: 'Accept Pickup?'}, class: "btn col-9 mb-3" %>
+              <%= button_to "Deny", pickup_path(pickup.id), method: :delete, data: {confirm: 'Deny Pickup?'}, class: "btn col-9 mb-3" %>
         <% when "accepted" %>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary col-9 mb-3" data-toggle="modal" data-target="#exampleModal">
             Complete
           </button>
 
@@ -45,7 +55,7 @@
         <% when "picked_up" %>
           Pending
         <% end %>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+

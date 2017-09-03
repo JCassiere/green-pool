@@ -1,3 +1,5 @@
+<%= flash.alert %>
+
 <h3 class="mt-4 mb-4" align="center"><%= @driver.first_name %>'s Trip</h3>
 
 <%= form_for :trip, url: '/trips' do |f| %>
@@ -21,13 +23,6 @@
 			  <%= f.submit "Create Trip", class: "form-control btn mb-4 white-btn" %>
 		  </div>
   	</div>
-</div>
-
-<div class="form-group row">
-  <label for="example-datetime-local-input" class="col-2 col-form-label">Date and time</label>
-  <div class="col-10">
-    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-  </div>
 </div>
 
 <% end %>
