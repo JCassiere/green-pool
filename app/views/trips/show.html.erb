@@ -25,7 +25,6 @@
       	    <p>Number of Bags: <%= pickup.num_bags %><p>
       	    <% case pickup.status %>
       	    <% when "created" %>
-
               <%= button_to "Accept", pickups_update_path(pickup.id), data: {confirm: 'Accept Pickup?'}, class: "btn col-9 mb-3" %>
               <%= button_to "Deny", pickup_path(pickup.id), method: :delete, data: {confirm: 'Deny Pickup?'}, class: "btn col-9 mb-3" %>
             <% when "accepted" %>

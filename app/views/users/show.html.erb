@@ -22,7 +22,7 @@
 					<p class="mt-4 col-9 card-text" id="text">Pickups: <%= trip.pickups.count %></p>
 				</div>
 				<div class="col col-10" align="center">
-					<button class="btn mt-4 mb-4 col-9 white-btn" id="button"><%= link_to "View Trip", trip_path(trip.id) %></button>
+					<%= button_to "View Trip", trip_path(trip.id), method: :get, class:"btn mt-4 mb-4 col-9 white-btn", id:"button"%>
 				</div>
 			</div>
 		</div>

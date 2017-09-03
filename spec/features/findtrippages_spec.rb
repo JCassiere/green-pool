@@ -118,9 +118,11 @@ RSpec.feature "Find Trip Page", type: :feature do
       it "should have a pickup with a recycler name" do
         expect(page).to have_content(@other_user.full_name)
       end
+
       it "should have a pickup with an address" do
-        expect(page).to have_content(@other_user.full_name)
+        expect(page).to have_content(@other_user.address)
       end
+
       it "should have a pickup with a number of bags" do
         expect(page).to have_content("Number of Bags: 2")
       end
