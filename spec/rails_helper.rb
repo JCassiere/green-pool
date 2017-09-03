@@ -82,6 +82,7 @@ def autopopulated_signup
   visit(signup_path)
   fill_in "First Name", with: "Random"
   fill_in "Last Name", with: "Person"
+  fill_in "Phone Number", with: "(513) 815-5621"
   fill_in "Email", with: "fakeemail@gmail.com"
   fill_in "Password", with: "password"
   fill_in "Password Confirmation", with: "password"
@@ -109,9 +110,10 @@ end
 
 def faker_dummy
   user = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
+    first_name: Faker::Name.first_name, 
+    last_name: Faker::Name.last_name, 
+    email: Faker::Internet.email, 
+    phone_number: '(513) 815-5621',
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: Faker::Address.street_address,
     city: Faker::Address.city,
@@ -128,9 +130,10 @@ end
 
 def dummy_user_model
   user = User.new(
-    first_name: "Random",
-    last_name: "Person",
-    email: "fakeemail@gmail.com",
+    first_name: "Random", 
+    last_name: "Person", 
+    phone_number: '(513) 815-5621',
+    email: "fakeemail@gmail.com", 
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: "549 NW 28th St.",
     city: "Miami",

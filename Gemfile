@@ -36,6 +36,12 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'geocoder'
 gem 'jquery-rails'
 
+gem 'twilio-ruby'
+gem 'phonelib'
+
+gem 'delayed_job_active_record'
+
+
 group :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
