@@ -16,7 +16,8 @@ user_one = User.new(
   city: "Miami",
   state: "FL",
   zip_code: "33127",
-  country: "USA"
+  country: "USA",
+  credit_count: 3
 )
 
 user_one.password = 'password'
@@ -33,11 +34,12 @@ user_two = User.new(
   city: "Miami",
   state: "FL",
   zip_code: "33127",
-  country: "USA"
+  country: "USA",
+  credit_count: 3
 )
 
 user_two.password = "password"
-user_two.password_confirmation = "password" 
+user_two.password_confirmation = "password"
 user_two.save
 
 trip = user_one.trips.create(
@@ -48,7 +50,7 @@ trip = user_one.trips.create(
 trip.pickups.create(
 	user_id: user_two.id,
 	num_bags: 2
-)
+	)
 
 trip_two = user_one.trips.create(
   pickup_time: Time.now + 30.minutes,
@@ -59,3 +61,4 @@ trip_two.pickups.create(
   user_id: user_two.id,
   num_bags: 2
 )
+

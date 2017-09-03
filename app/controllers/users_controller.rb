@@ -25,6 +25,18 @@ class UsersController < ApplicationController
   	end
   end
 
+  def transfer
+      @user = current_user
+      @pickup = Pickup.find(params[:id])
+      @driver = @pickup.trip.user
+      @num_bags = @pickup.num_bags
+      @user.credit_count -= @num_bags
+      @driver.credit_count += @num_bags
+      @user.save
+      @driver.save
+      redirect_to users_show_path
+  end
+
   private
   	def user_params
   		params.require(:user).permit(

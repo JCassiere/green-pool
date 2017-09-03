@@ -146,3 +146,39 @@ def dummy_user_model
   user.save
   user
 end
+
+def dummy_driver
+  User.new(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    password_digest: Faker::DragonBall.character,
+    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+    street: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    zip_code: Faker::Address.zip,
+    country: Faker::Address.country
+  )
+end
+
+def dummy_recycler
+  user = User.new(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+    street: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    zip_code: Faker::Address.zip,
+    country: Faker::Address.country
+  )
+  password = Faker::DragonBall.character
+  user.password = password
+  user.password_digest = password
+  user.save
+  user
+end
+
+

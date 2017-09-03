@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
   # get 'trips' => 'trips#index', as: "trips_index"
 
+
+  post 'users/transfer/:id' => 'users#transfer', as: "transfer_credit" 
+
   get 'users/:id' => "users#show", as: "users_show"
 
   get 'users/new'
