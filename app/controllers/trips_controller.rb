@@ -17,7 +17,7 @@ class TripsController < ApplicationController
   def create
     trip = Trip.new(trip_params)
     if trip.save
-      flash[:notice] = "New trip created"
+      flash[:notice] = "New trip scheduled"
       redirect_to users_show_path(trip.user_id)
     else
       flash[:alert] = "No trip created - please try again"

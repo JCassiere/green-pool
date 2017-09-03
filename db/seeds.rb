@@ -49,3 +49,13 @@ trip.pickups.create(
 	user_id: user_two.id,
 	num_bags: 2
 )
+
+trip_two = user_one.trips.create(
+  pickup_time: Time.now + 30.minutes,
+  total_space: 5
+)
+
+trip_two.pickups.create(
+  user_id: user_two.id,
+  num_bags: 2
+)
