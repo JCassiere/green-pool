@@ -4,12 +4,6 @@
 
 <h4 class="mt-4" align="center">Credit count: <%= @user.credit_count%></h4>
 
-<%# @trips.each do |trip| %>
-  <%# trip.pickups.each do |x| %>
-    <!-- <p>Pick ups pending: <%#=x.id%></p> -->
-  <%#end%>
-<%#end%>
-
 <% if @user.trips.length > 0 %>
   <h3 class="mt-4 mb-4 title-area" align="center">Trips</h3>
 	<% @user.trips.each do |trip| %>
@@ -22,7 +16,7 @@
 					<p class="mt-4 col-9 card-text" id="text">Pickups: <%= trip.pickups.count %></p>
 				</div>
 				<div class="col col-10" align="center">
-					<button class="btn mt-4 mb-4 col-9 white-btn" id="button"><%= link_to "View Trip", trip_path(trip.id) %></button>
+					<%= button_to "View Trip", trip_path(trip.id), method: :get, class:"btn mt-4 mb-4 col-9 white-btn", id:"button"%>
 				</div>
 			</div>
 		</div>

@@ -13,7 +13,7 @@ class PickupsController < ApplicationController
   def create
   	pickup = Pickup.new(trip_params)
     if pickup.save
-      flash[:notice] = "New pickup created"
+      flash[:notice] = "New pickup scheduled"
   	  redirect_to users_show_path(pickup.user_id)
     else
       flash[:alert] = "No pickup created - please try again"

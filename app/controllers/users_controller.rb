@@ -31,6 +31,7 @@ class UsersController < ApplicationController
         :first_name, 
         :last_name, 
         :avatar, 
+        :phone_number,
         :email, 
         :password, 
         :password_confirmation,
