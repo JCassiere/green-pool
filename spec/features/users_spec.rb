@@ -50,4 +50,11 @@ RSpec.feature "Users", type: :feature do
       end
     end
   end
+
+  describe "creating a new user using the autopopulated address fields" do
+    it "should still redirect to homepage and see a welcome message after creating an account" do
+      autopopulated_signup
+      click_submit_button
+    end
+  end
 end

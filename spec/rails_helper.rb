@@ -78,23 +78,28 @@ RSpec.configure do |config|
   end
 end
 
-def dummy_user_signup
+def autopopulated_signup
   visit(signup_path)
-
   fill_in "First Name", with: "Random"
   fill_in "Last Name", with: "Person"
   fill_in "Email", with: "fakeemail@gmail.com"
   fill_in "Password", with: "password"
   fill_in "Password Confirmation", with: "password"
+  attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
+end
 
+def click_submit_button
+  click_button "Submit"
+end
+
+def dummy_user_signup
+  autopopulated_signup
   fill_in "Street", with: "549 NW 28th St."
   fill_in "City", with: "Miami"
   fill_in "State", with: "FL"
   fill_in "Zip/Postal Code", with: "33127"
   fill_in "Country", with: "US"
-
-  attach_file("Profile Picture", Rails.root.join('spec/fixtures/images/rails.jpg'))
-  click_button "Submit"
+  click_submit_button
 end
 
 def dummy_user
