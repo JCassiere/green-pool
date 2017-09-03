@@ -2,6 +2,8 @@
 <%= @trip.pickup_time.localtime.strftime("%B %e, %Y at %l:%M %p") %>
 <%= "Space left for #{@trip.remaining_space} bags" %>
 
+<%= button_to "Cancel Trip", trip_path(@trip.id), method: :delete, data: {confirm: 'Deny Pickup?'} %>
+
 <%= flash.notice %>
 
 <% if @trip.pickups.length > 0 %>
@@ -15,10 +17,10 @@
   	    <% case pickup.status %>
   	    <% when "created" %>
 
-          <%= button_to "Accept", pickups_update_path(pickup.id), method: :get, :confirm => 'Accept Pickup?' %>
-          <%= button_to "Deny", pickup_path(pickup.id), method: :delete, :confirm => 'Deny Pickup?' %>
+          <%= button_to "Accept", pickups_update_path(pickup.id), data: {confirm: 'Accept Pickup?'} %>
+          <%= button_to "Deny", pickup_path(pickup.id), method: :delete, data: {confirm: 'Deny Pickup?'} %>
         <% when "accepted" %>
-          <%= link_to "Complete", pickups_update_path(pickup.id), :confirm => 'Pickup Completed?' %>
+          <%= button_to "Complete", pickups_update_path(pickup.id), data: {confirm: 'Pickup Completed?'} %>
         <% when "picked_up" %>
           Pending
         <% end %>

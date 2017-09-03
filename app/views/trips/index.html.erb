@@ -5,7 +5,9 @@
 	    <%= trip.driver_name %>
 	    <%= trip.start_address %>
 	    Space Remaining: <%= trip.remaining_space %>
-	    <%= link_to "Add Recycling", new_trip_pickup_path(trip.id) %>
+	    <% unless current_user == trip.user %>
+		    <%= button_to "Add Recycling", new_trip_pickup_path(trip.id), method: :get, class: "btn btn-primary col-9 mb-4 btn-lg", align: "center" %>
+		  <% end %>
 	  </div>
 	<% end %>
 <% end %>

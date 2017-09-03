@@ -1,6 +1,7 @@
 class Trip < ApplicationRecord
   belongs_to :user 
-	has_many :pickups
+	has_many :pickups, dependent: :destroy
+	validates_presence_of :pickup_time, :total_space
 
 	def start_address
 		self.user.address

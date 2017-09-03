@@ -8,7 +8,7 @@ RSpec.feature "Newtrippages", type: :feature do
     fill_in "Password", with: @driver.password_digest
     click_button("Log In")
     visit root_path
-    click_link("Schedule Trip")
+    click_button("Schedule Trip")
   end
 
   describe "clicking new trip link" do
@@ -42,7 +42,7 @@ RSpec.feature "Newtrippages", type: :feature do
 
     describe "when visiting the driver trip page" do
       before(:each) do
-        click_link("View Trip")
+        click_button("View Trip")
       end
 
       it "should display the driver's name" do
@@ -60,6 +60,22 @@ RSpec.feature "Newtrippages", type: :feature do
       it "should have no pickups associated with it" do
         expect(page).to_not have_content("Pickups")
       end
+
+      it "should have a button for cancelling a trip" do
+        expect(find_button('Cancel Trip').visible?).to be true
+      end
+
+
+      describe "cancelling a trip" do
+        before(:each) do
+          click_button("Cancel Trip")
+        end
+
+        it "should no longer have the trip on the driver's page" do
+          expect(page).to_not have_content("Trips")
+        end
+      end
+
     end
   end
 end

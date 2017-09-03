@@ -1,10 +1,12 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+require 'spec_helper'
 require 'rspec/rails'
+require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -33,7 +35,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -54,6 +56,26 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
 def dummy_user_signup
@@ -115,54 +137,4 @@ def dummy_user_model
   user.password_confirmation = "password"
   user.save
   user
-end
-
-def dummy_driver
-  User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
-    password_digest: Faker::DragonBall.character,
-    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
-    street: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    zip_code: Faker::Address.zip,
-    country: Faker::Address.country
-  )
-end
-
-def dummy_recycler
-  user = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
-    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
-    street: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    zip_code: Faker::Address.zip,
-    country: Faker::Address.country
-  )
-  password = Faker::DragonBall.character
-  user.password = password
-  user.password_digest = password
-  user.save
-  user
-end
-
-def select_date(date, options = {})
-  field = options[:from]
-  base_id = find(:xpath, ".//label[contains(.,'#{field}')]")[:for]
-  year, month, day = date.split(',')
-  select year,  :from => "#{base_id}_1i"
-  select month, :from => "#{base_id}_2i"
-  select day,   :from => "#{base_id}_3i"
-end
-
-def select_time(hour, minute, options = {})
-  field = options[:from]
-  base_id = find(:xpath, ".//label[contains(.,'#{field}')]")[:for]
-  select hour, :from => "#{base_id}_4i"
-  select minute, :from => "#{base_id}_5i"
 end

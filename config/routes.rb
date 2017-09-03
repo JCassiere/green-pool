@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :pickups, shallow: true
   end
 
-  get 'pickups/:id/update' => 'pickups#update_status', as: "pickups_update"
+  post 'pickups/:id' => 'pickups#update_status', as: "pickups_update"
 
   # get 'pickups/new'
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   # get 'trips' => 'trips#index', as: "trips_index"
 
-  get 'users/show'
+  get 'users/:id' => "users#show", as: "users_show"
 
   get 'users/new'
 

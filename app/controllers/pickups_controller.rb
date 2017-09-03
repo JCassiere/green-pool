@@ -11,8 +11,14 @@ class PickupsController < ApplicationController
   end
 
   def create
-  	Pickup.create(trip_params)
-  	redirect_to users_show_path
+  	pickup = Pickup.new(trip_params)
+    if pickup.save
+      flash[:notice] = "New pickup created"
+  	  redirect_to users_show_path(pickup.user_id)
+    else
+      flash[:alert] = "No pickup created - please try again"
+      redirect_to new_trip_pickup_path(pickup.trip_id)
+    end
   end
 
   def destroy
@@ -26,14 +32,7 @@ class PickupsController < ApplicationController
 
   def update_status
     pickup = Pickup.find(params[:id])
-    case pickup.status
-    when "created"
-      pickup.accepted!
-    when "accepted"
-      pickup.picked_up!
-    when "picked_up"
-      pickup.completed!
-    end
+    pickup.update_status
     redirect_to trip_path(pickup.trip.id)
   end
 
