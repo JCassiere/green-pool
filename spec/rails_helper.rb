@@ -119,11 +119,12 @@ def faker_dummy
     city: Faker::Address.city,
     state: Faker::Address.state,
     zip_code: Faker::Address.zip_code,
-    country: Faker::Address.country_code
+    country: Faker::Address.country_code,
+    credit_count: 5
   )
-  password = Faker::Internet.password
-  user.password = password
-  user.password_confirmation = password
+  # password = Faker::Internet.password
+  user.password = "password"
+  user.password_confirmation = "password"
   user.save
   user
 end
