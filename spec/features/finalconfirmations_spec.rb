@@ -8,6 +8,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
     @pickup = @trip.pickups.create(num_bags: 3,status: 0, user_id: @recycler.id)
     visit trip_path(@trip)
     click_button("Accept")
+    visit trip_path(@trip)
   end
 
   describe "confirming a finished transaction on a recyclers page" do
@@ -25,8 +26,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
       expect(find_button("Done").visible?).to be true
     end
     it "after the driver clicks the done button on the confirmation modal the pickup should change to pending" do
-      click_button("Complete")
-      # click_button("Done")
+      click_button("Complete")      
       expect(find_button("Done").visible?).to be true
       click_button("Done")
       expect(page).to have_content("Pending")
@@ -38,7 +38,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
       fill_in("email",:with => @recycler.email)
       fill_in("password",:with => @recycler.password)
       click_button("Log In")
-      visit users_show_path
+      visit users_show_path(@recycler.id)
       expect(page).to have_content("Status: Accepted! Put your bag out for pickup.")
       visit logout_path
       fill_in("email",:with => @driver.email)
@@ -52,7 +52,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
       fill_in("email",:with => @recycler.email)
       fill_in("password",:with => @recycler.password)
       click_button("Log In")
-      visit users_show_path
+      visit users_show_path(@recycler.id)
       expect(page).to have_content("Status: Your bag has been picked up, please confirm!")
     end
 
@@ -63,7 +63,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
       fill_in("email",:with => @recycler.email)
       fill_in("password",:with => @recycler.password)
       click_button("Log In")
-      visit users_show_path
+      visit users_show_path(@recycler.id)
       expect(find_button("Complete").visible?).to be true
       click_button("Complete")
       expect(find_button("Done").visible?).to be true
@@ -77,7 +77,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
       fill_in("email",:with => @recycler.email)
       fill_in("password",:with => @recycler.password)
       click_button("Log In")
-      visit users_show_path
+      visit users_show_path(@recycler.id)
       expect(find_button("Complete").visible?).to be true
       click_button("Complete")
       expect(find_button("Done").visible?).to be true
@@ -92,7 +92,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
       fill_in("email",:with => @recycler.email)
       fill_in("password",:with => @recycler.password)
       click_button("Log In")
-      visit users_show_path
+      visit users_show_path(@recycler.id)
       expect(find_button("Complete").visible?).to be true
       click_button("Complete")
       expect(find_button("Done").visible?).to be true
@@ -101,7 +101,7 @@ RSpec.feature "Finalconfirmations", type: :feature do
       fill_in("email",:with => @driver.email)
       fill_in("password",:with => "password")
       click_button("Log In")
-      visit users_show_path
+      visit users_show_path(@driver.id)
       expect(page).to have_content("Credit count: 4")
     end
   end

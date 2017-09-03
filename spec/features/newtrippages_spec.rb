@@ -11,7 +11,7 @@ RSpec.feature "Newtrippages", type: :feature do
     click_button("Schedule Trip")
   end
 
-  describe "clicking new trip link" do
+  describe "clicking new trip button" do
     it "should show user's name" do
       expect(page).to have_content(@driver.first_name)
     end
