@@ -9,7 +9,7 @@ class TwilioController < ApplicationController
     params[:sms_numbers].each do
 	    client.messages.create(
 	      to: "513-703-4852",
-	      from: "+1 513-815-5621",
+	      from: Rails.application.secrets.twilio_phone_number,
 	      body: params[:body]
 	    )
 	  end
