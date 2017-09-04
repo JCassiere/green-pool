@@ -38,9 +38,45 @@ user_two = User.new(
   credit_count: 3
 )
 
+user_three = User.new(
+  first_name: "Another", 
+  last_name: "Person", 
+  phone_number: '(513) 703-4852',
+  email: "fakeemail3@gmail.com", 
+  avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+  street: "2451 NW 5 Ave",
+  city: "Miami",
+  state: "FL",
+  zip_code: "33127",
+  country: "USA",
+  credit_count: 3
+)
+
+user_four = User.new(
+  first_name: "Other", 
+  last_name: "Person", 
+  phone_number: '(513) 703-4852',
+  email: "fakeemail4@gmail.com", 
+  avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+  street: "1251 SW 21 Ter",
+  city: "Miami",
+  state: "FL",
+  zip_code: "33145",
+  country: "USA",
+  credit_count: 3
+)
+
 user_two.password = "password"
 user_two.password_confirmation = "password"
 user_two.save
+
+user_three.password = "password"
+user_three.password_confirmation = "password"
+user_three.save
+
+user_four.password = "password"
+user_four.password_confirmation = "password"
+user_four.save
 
 trip = user_one.trips.create(
   pickup_time: Faker::Time.forward(2, :morning),
@@ -53,11 +89,21 @@ trip.pickups.create(
 	)
 
 trip_two = user_one.trips.create(
-  pickup_time: Time.now + 30.minutes,
+  pickup_time: Time.now + 31.minutes,
   total_space: 5
 )
 
 trip_two.pickups.create(
   user_id: user_two.id,
   num_bags: 2
+)
+
+user_three.trips.create(
+  pickup_time: Faker::Time.forward(2, :morning),
+  total_space: 5
+)
+
+user_four.trips.create(
+  pickup_time: Faker::Time.forward(2, :morning),
+  total_space: 5
 )
