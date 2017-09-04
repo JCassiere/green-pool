@@ -1,10 +1,9 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
 
 body,
 .container{
-	min-height: 100vh;
+	// min-height: 100vh;
+	max-height: 100vh;
 }
 
 #notice {
@@ -36,4 +35,43 @@ body,
 .button_to {
 	width: 100%;
 	text-align: center;
+}
+
+#ocean{
+  position:absolute;
+  width:100%;
+  min-height:100%;
+  background-image: -webkit-gradient(
+  linear,
+  left bottom,
+  left top,
+  color-stop(0, rgb(0,117,0)),
+  color-stop(0.50, rgb(0,128,0))
+  );
+	z-index: -2;
+}
+
+.wave{
+  background:white;
+  display:inline-block;
+  height:60%;
+  width:10px;
+  position:absolute;
+  -webkit-animation-name:             dostuff;
+  -webkit-animation-duration:         3s;
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+
+@-webkit-keyframes dostuff{
+  0%{
+    height:60%;
+  }
+  50%{
+    height:40%;
+  }
+  100%{
+    height:60%;
+  }
 }
