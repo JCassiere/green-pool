@@ -37,6 +37,12 @@ gem 'geocoder'
 gem 'jquery-rails'
 gem 'recaptcha', require: 'recaptcha/rails'
 
+gem 'twilio-ruby'
+gem 'phonelib'
+
+gem 'delayed_job_active_record'
+
+
 group :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'

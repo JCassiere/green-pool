@@ -18,4 +18,5 @@ class Trip < ApplicationRecord
 	def driver_first_name
 		self.user.first_name
 	end
+
 end

@@ -9,13 +9,15 @@
 user_one = User.new(
   first_name: "Random", 
   last_name: "Person", 
+  phone_number: '(513) 703-4852',
   email: "fakeemail@gmail.com", 
   avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
   street: "549 NW 28th St.",
   city: "Miami",
   state: "FL",
   zip_code: "33127",
-  country: "USA"
+  country: "USA",
+  credit_count: 3
 )
 
 user_one.password = 'password'
@@ -25,17 +27,19 @@ user_one.save
 user_two = User.new(
   first_name: "Random", 
   last_name: "Person2", 
+  phone_number: '(513) 703-4852',
   email: "fakeemail2@gmail.com", 
   avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
   street: "549 NW 28th St.",
   city: "Miami",
   state: "FL",
   zip_code: "33127",
-  country: "USA"
+  country: "USA",
+  credit_count: 3
 )
 
 user_two.password = "password"
-user_two.password_confirmation = "password" 
+user_two.password_confirmation = "password"
 user_two.save
 
 trip = user_one.trips.create(
@@ -46,4 +50,15 @@ trip = user_one.trips.create(
 trip.pickups.create(
 	user_id: user_two.id,
 	num_bags: 2
+	)
+
+trip_two = user_one.trips.create(
+  pickup_time: Time.now + 30.minutes,
+  total_space: 5
 )
+
+trip_two.pickups.create(
+  user_id: user_two.id,
+  num_bags: 2
+)
+

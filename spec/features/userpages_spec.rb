@@ -32,16 +32,19 @@ RSpec.feature "Userpages", type: :feature do
       expect(find_button('View Trip').visible?).to be true
     end
 
+
+
     it "should show pending pickups" do
       driver = faker_dummy
-      driver.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
-      driver.trips.last.pickups.create(num_bags: 3, user: @user)
+      trip = driver.trips.create(pickup_time: Faker::Date.forward(1), total_space: 3)
+      trip.pickups.create(num_bags: 3, user: @user)
       visit users_show_path(@user.id)
       expect(page).to have_content(driver.full_name)
       expect(page).to have_content("Number of Bags: 3")
     end
 
-    it "should show number of credits" do
+
+    it "userpage should show number of credits" do
       visit users_show_path(@user)
       expect(page).to have_content("Credit count: #{@user.credit_count}")
     end

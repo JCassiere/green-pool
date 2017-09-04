@@ -25,16 +25,36 @@
       	    <p>Number of Bags: <%= pickup.num_bags %><p>
       	    <% case pickup.status %>
       	    <% when "created" %>
-
               <%= button_to "Accept", pickups_update_path(pickup.id), data: {confirm: 'Accept Pickup?'}, class: "btn col-9 mb-3" %>
               <%= button_to "Deny", pickup_path(pickup.id), method: :delete, data: {confirm: 'Deny Pickup?'}, class: "btn col-9 mb-3" %>
             <% when "accepted" %>
-              <%= button_to "Complete", pickups_update_path(pickup.id), data: {confirm: 'Pickup Completed?'}, class: "btn col-9 mb-3" %>
+              <button type="button" class="btn btn-primary col-9 mb-3" data-toggle="modal" data-target="#exampleModal">Complete</button>
+
+              <%= form_tag( pickups_update_path(pickup.id), method: "get") do %>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm That You've Got the Bag!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        All done? Your community thanks you, but more importantly, the Earth does!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Done</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             <% when "picked_up" %>
               Pending
             <% end %>
           </div>
         <% end %>
       <% end %>
-    <% end %>
-</div>
+    </div>
+  <% end %>
