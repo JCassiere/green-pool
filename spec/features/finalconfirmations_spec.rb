@@ -29,7 +29,6 @@ RSpec.feature "Finalconfirmations", type: :feature do
       click_button("Complete")
       expect(find_button("Done").visible?).to be true
       click_button("Done")
-      save_and_open_page
       expect(page).to have_content("Pending")
     end
 
