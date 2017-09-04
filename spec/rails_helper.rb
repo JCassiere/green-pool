@@ -110,9 +110,9 @@ end
 
 def faker_dummy
   user = User.new(
-    first_name: Faker::Name.first_name, 
-    last_name: Faker::Name.last_name, 
-    email: Faker::Internet.email, 
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
     phone_number: '(513) 815-5621',
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: Faker::Address.street_address,
@@ -131,10 +131,10 @@ end
 
 def dummy_user_model
   user = User.new(
-    first_name: "Random", 
-    last_name: "Person", 
+    first_name: "Random",
+    last_name: "Person",
     phone_number: '(513) 815-5621',
-    email: "fakeemail@gmail.com", 
+    email: "fakeemail@gmail.com",
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: "549 NW 28th St.",
     city: "Miami",
@@ -181,5 +181,3 @@ def dummy_recycler
   user.save
   user
 end
-
-
