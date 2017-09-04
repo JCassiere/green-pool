@@ -4,7 +4,7 @@ class Pickup < ApplicationRecord
   validates_presence_of :num_bags
   enum status: [:created, :accepted, :picked_up, :completed]
 
-  after_create :reminder
+  after_create :reminder, :driver_notification
 
   def driver_name
   	self.trip.driver_name
@@ -41,6 +41,21 @@ class Pickup < ApplicationRecord
     end
   end
 
+  def driver_notification
+    @twilio_number = Rails.application.secrets.twilio_phone_number
+    @client = Twilio::REST::Client.new(
+      Rails.application.secrets.twilio_account_sid,
+      Rails.application.secrets.twilio_auth_token
+    )
+    time_str = ((self.pickup_time).localtime).strftime("%I:%M%p on %b. %d, %Y")
+    notification = "Hi #{self.driver_name}. #{self.recycler_name} has asked you to pick up their recycling at #{time_str}.  Their phone_number is #{self.recycler_phone_number} if you have any questions."
+    message = @client.messages.create(
+      :from => @twilio_number,
+      :to => self.driver_phone_number,
+      :body => notification,
+    )
+  end
+
   def reminder
     @twilio_number = Rails.application.secrets.twilio_phone_number
     @client = Twilio::REST::Client.new(
@@ -61,5 +76,5 @@ class Pickup < ApplicationRecord
     self.pickup_time - minutes_before_trip
   end
 
-  handle_asynchronously :reminder, run_at: Proc.new { 239.minutes.ago }
+  handle_asynchronously :reminder, run_at: Proc.new { |i| i.when_to_run }
 end

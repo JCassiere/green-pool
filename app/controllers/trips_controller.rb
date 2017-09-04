@@ -11,7 +11,8 @@ class TripsController < ApplicationController
   end
 
   def index
-    @trips = Trip.all
+    @user = current_user
+    @trips = Trip.near(@user.address, 2).limit(5)
   end
 
   def create

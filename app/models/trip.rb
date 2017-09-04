@@ -3,6 +3,9 @@ class Trip < ApplicationRecord
 	has_many :pickups, dependent: :destroy
 	validates_presence_of :pickup_time, :total_space
 
+	geocoded_by :start_address
+  after_validation :geocode
+
 	def start_address
 		self.user.address
 	end

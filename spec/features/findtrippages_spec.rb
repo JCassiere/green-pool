@@ -8,7 +8,7 @@ RSpec.feature "Find Trip Page", type: :feature do
 
     describe "after a trip is created by a different user" do
       before(:each) do
-        @other_user = faker_dummy
+        @other_user = other_user_model
         @pickup_time = Faker::Time.forward(2, :morning)
         @trip = @other_user.trips.create(
           pickup_time: @pickup_time,
@@ -17,12 +17,12 @@ RSpec.feature "Find Trip Page", type: :feature do
       end
 
       it "I should be able to go to the homepage and see the find trip link" do
-        expect(find_button('Have Your Recycling Picked Up').visible?).to be true
+        expect(find_button('Schedule Pickup').visible?).to be true
       end
 
       describe "on the find trip page" do
         before(:each) do
-          click_button('Have Your Recycling Picked Up')
+          click_button('Schedule Pickup')
         end
 
         it "a trip's driver should be visible" do
@@ -40,6 +40,15 @@ RSpec.feature "Find Trip Page", type: :feature do
         it "a trip's date should be visible" do
           pickup = @pickup_time.strftime("%B %e, %Y at %l:%M %p")
           expect(page).to have_content("Scheduled for #{pickup}")
+        end
+
+        it "should not show a trip that is more than 2 miles away" do
+          far_person = far_away_user_model
+          trip = far_person.trips.create(
+                    pickup_time: @pickup_time,
+                    total_space: 5
+                 )
+          expect(page).to_not have_content(far_person.full_name)
         end
 
         it "I should be able to press a button to add my recycling to a trip" do
@@ -106,7 +115,7 @@ RSpec.feature "Find Trip Page", type: :feature do
           pickup_time: @pickup_time,
           total_space: 5
         )
-        @other_user = faker_dummy
+        @other_user = other_user_model
         @other_user.recycling_pickups.create(
           num_bags: 2,
           trip_id: @trip.id

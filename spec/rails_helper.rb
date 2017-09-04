@@ -82,7 +82,7 @@ def autopopulated_signup
   visit(signup_path)
   fill_in "First Name", with: "Random"
   fill_in "Last Name", with: "Person"
-  fill_in "Phone Number", with: "(513) 815-5621"
+  fill_in "Phone Number", with: '(513) 703-4852'
   fill_in "Email", with: "fakeemail@gmail.com"
   fill_in "Password", with: "password"
   fill_in "Password Confirmation", with: "password"
@@ -110,10 +110,10 @@ end
 
 def faker_dummy
   user = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
-    phone_number: '(513) 815-5621',
+    first_name: Faker::Name.first_name, 
+    last_name: Faker::Name.last_name, 
+    email: Faker::Internet.email, 
+    phone_number: '(513) 703-4852',
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: Faker::Address.street_address,
     city: Faker::Address.city,
@@ -131,16 +131,54 @@ end
 
 def dummy_user_model
   user = User.new(
-    first_name: "Random",
-    last_name: "Person",
-    phone_number: '(513) 815-5621',
-    email: "fakeemail@gmail.com",
+    first_name: "Random", 
+    last_name: "Person", 
+    phone_number: '(513) 703-4852',
+    email: "fakeemail@gmail.com", 
     avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
     street: "549 NW 28th St.",
     city: "Miami",
     state: "FL",
     zip_code: "33127",
     country: "USA"
+  )
+  user.password = "password"
+  user.password_confirmation = "password"
+  user.save
+  user
+end
+
+def other_user_model
+  user = User.new(
+    first_name: "Other", 
+    last_name: "Person", 
+    phone_number: '(513) 703-4852',
+    email: "fakeemail2@gmail.com", 
+    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+    street: "2451 NW 5 Ave",
+    city: "Miami",
+    state: "FL",
+    zip_code: "33127",
+    country: "USA",
+  )
+  user.password = "password"
+  user.password_confirmation = "password"
+  user.save
+  user
+end
+
+def far_away_user_model
+  user = User.new(
+    first_name: "Far", 
+    last_name: "Person", 
+    phone_number: '(513) 703-4852',
+    email: "fakeemail3@gmail.com", 
+    avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
+    street: "6825 Bridgetown Rd.",
+    city: "Cincinnati",
+    state: "OH",
+    zip_code: "45248",
+    country: "USA",
   )
   user.password = "password"
   user.password_confirmation = "password"
