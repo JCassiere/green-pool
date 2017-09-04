@@ -53,7 +53,7 @@ trip.pickups.create(
 	)
 
 trip_two = user_one.trips.create(
-  pickup_time: Time.now + 30.minutes,
+  pickup_time: Time.now + 31.minutes,
   total_space: 5
 )
 
