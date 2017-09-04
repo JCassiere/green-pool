@@ -7,7 +7,7 @@
 <% if @user.trips.length > 0 %>
   <h3 class="mt-4 mb-4 title-area" align="center">Trips</h3>
 	<% @user.trips.each do |trip| %>
-		<div class="card border-info text-center">
+		<div class="card w-75 border-info text-center">
 			<div class="card-block trip" align="center">
 				<div class="col col-10" align="center">
 				    <p class="mt-4 col-12 card-text" id="text"><%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %></p>
@@ -31,7 +31,7 @@
 				<div class="col col-10" align="center">
           <p class="mt-4 col-12 card-text" id="text"><%= pickup.driver_name %></p>
         </div>
-        
+
         <div class="col col-10" align="center">
           <p class="mt-4 col-12 card-text" id="text">Number of Bags: <%= pickup.num_bags %></p>
         </div>
@@ -67,19 +67,6 @@
               </div>
             <%end%>
         <%end%>
-<!-- 
-	<div class="card border-info text-center">
-		<div class="card-block trip" align="center">
-			<div class="col col-10" align="center">
-				<p class="mt-4 col-12 card-text" id="text"><%= pickup.driver_name %></p>
-			</div>
-			<div class="col col-10" align="center">
-				<p class="mt-4 mb-4 col-12 card-text" id="text">Number of Bags: <%= pickup.num_bags %></p>
-			</div>
-		</div>
-    
-    
--->
-	</div>
+	   </div>
 <%end%>
 <% end %>
