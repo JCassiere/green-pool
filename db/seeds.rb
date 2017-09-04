@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user_one = User.new(
-  first_name: "Random", 
-  last_name: "Person", 
+  first_name: "Random",
+  last_name: "Person",
   phone_number: '(513) 703-4852',
-  email: "fakeemail@gmail.com", 
+  email: "fakeemail@gmail.com",
   avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
   street: "549 NW 28th St.",
   city: "Miami",
@@ -25,10 +25,10 @@ user_one.password_confirmation = 'password'
 user_one.save
 
 user_two = User.new(
-  first_name: "Random", 
-  last_name: "Person2", 
+  first_name: "Random",
+  last_name: "Person2",
   phone_number: '(513) 703-4852',
-  email: "fakeemail2@gmail.com", 
+  email: "fakeemail2@gmail.com",
   avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
   street: "549 NW 28th St.",
   city: "Miami",

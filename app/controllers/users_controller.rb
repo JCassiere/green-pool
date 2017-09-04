@@ -34,18 +34,19 @@ class UsersController < ApplicationController
       @driver.credit_count += @num_bags
       @user.save
       @driver.save
-      redirect_to users_show_path
+      @pickup.destroy
+      redirect_to users_show_path(@user)
   end
 
   private
   	def user_params
   		params.require(:user).permit(
-        :first_name, 
-        :last_name, 
-        :avatar, 
+        :first_name,
+        :last_name,
+        :avatar,
         :phone_number,
-        :email, 
-        :password, 
+        :email,
+        :password,
         :password_confirmation,
         :street,
         :city,

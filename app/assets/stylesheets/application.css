@@ -14,9 +14,13 @@
  *= require_self
  */
 
+body {
+	font-family: 'Quicksand', sans-serif;
+}
 
 .navbar {
 	background-color: #009446;
+	font-family: 'Oleo Script', cursive;
 }
 
 .navbar-text a {
