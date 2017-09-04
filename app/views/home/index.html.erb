@@ -1,11 +1,9 @@
 <h1 id="notice" align="center"><%= flash.notice %></h1>
 
-
-<div class="container">
 	<div class="row align-items-center">
 		<div class="col align-self-center buttons" id="verti">
 			<%= button_to "Schedule Trip", new_trip_path, method: :get, class: "btn btn-primary col-9 mb-4 btn-lg", align: "center" %>
 			<%= button_to "Schedule Pickup", trips_path, method: :get, class: "btn btn-primary col-9 mb-4 btn-lg", align: "center" %>
 		</div>
+		<div id="ocean"></div>
 	</div>
-</div>
