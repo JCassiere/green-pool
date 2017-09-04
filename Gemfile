@@ -35,6 +35,7 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # gem 'capistrano-rails', group: :development
 gem 'geocoder'
 gem 'jquery-rails'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 group :test do
   gem 'capybara', '~> 2.13'

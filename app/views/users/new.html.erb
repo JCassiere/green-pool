@@ -53,12 +53,16 @@
     <%= f.text_field :country, class: "form-control col-8 mb-4" %>
   </div>
 
+  <div class="mt-4" align="center">
+    <%= recaptcha_tags %>
+  </div>
+
   <div class="field" align="center">
   	<%= f.label :avatar, "Profile Picture" %>
 	  <%= f.file_field :avatar, class: "form-control col-8 mb-4 btn-light" %>
   </div>
 
-  <div class="action" align="center">
+  <div class="action mb-4" align="center">
 	  <%= f.submit "Submit", class: "btn col-8" %>
   </div>
 
