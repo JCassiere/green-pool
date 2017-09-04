@@ -2,17 +2,17 @@
 	<% unless trip.remaining_space == 0 %>
 	  <div class="card border-primary mt-4">
 		<div class="card-block">
-		    <div class="card-header bg-success" align="center">Scheduled for <%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
+		    <div class="card-header bg-success" align="center">
+		    	Scheduled for <%= trip.pickup_time.strftime("%B %e, %Y at %l:%M %p") %>
 		    </div>
 		    <h4 class="card-title mt-3" align="center"><%= trip.driver_name %></h4>
 		    <p class="card-text" align="center"><%= trip.start_address %></p>
 		    <p class="card-text mb-3" align="center">Space Remaining: <%= trip.remaining_space %></p>
+
+		    <% unless current_user == trip.user %>
+			<%= button_to "Add Recycling", new_trip_pickup_path(trip.id), method: :get, class: "btn btn-primary col-9 mb-4 btn-lg", align: "center" %>
 		</div>
 	  </div>
-		    <% unless current_user == trip.user %>
-
-
-			    <%= button_to "Add Recycling", new_trip_pickup_path(trip.id), method: :get, class: "btn btn-primary col-9 mb-4 btn-lg", align: "center" %>
-			  <% end %>  
+		<% end %>  
 	<% end %>
 <% end %>
