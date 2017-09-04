@@ -40,12 +40,18 @@
           <p class="mt-4 col-12 card-text" id="text">Number of Bags: <%= pickup.num_bags %></p>
         </div>
         <% case pickup.status %>
-          <%when "created"%>
+          <%when "created" %>
+          <div class="mb-4 mt-3">
             Status: Waiting for acceptance
+          </div>
           <%when "accepted"%>
+          <div>
             Status: Accepted! Put your bag out for pickup.
+          </div>
           <%when "picked_up"%>
+          <div class="mb-4 mt-3">
             Status: Your bag has been picked up, please confirm!
+          </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
               Complete
             </button>
