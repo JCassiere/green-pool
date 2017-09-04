@@ -2,7 +2,7 @@
     <div class="card-header text-white bg-success" align="center">
         <h3><%= @trip.user.full_name %>'s Trip</h3>
     </div>
-    <div class="card-text" align="center">
+    <div class="card-text mt-3" align="center">
         <p><%= @trip.pickup_time.localtime.strftime("%B %e, %Y at %l:%M %p") %></p>
         <p><%= "Space left for #{@trip.remaining_space} bags" %></p>
     </div>
@@ -19,7 +19,7 @@
     </div>
       <% @trip.pickups.each do |pickup| %>
         <% unless pickup.completed? %>
-          <div class="card-text" align="center">
+          <div class="card-text mt-3" align="center">
       	    <p><%= pickup.recycler_name %></p>
       	    <p><%= pickup.address %></p>
       	    <p>Number of Bags: <%= pickup.num_bags %><p>
