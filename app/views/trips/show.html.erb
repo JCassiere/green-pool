@@ -13,7 +13,7 @@
 <%= flash.notice %>
 
 <% if @trip.pickups.length > 0 %>
-<div class="card border-primary mt-3">  
+<div class="card border-primary mt-3">
     <div class="card-header text-white bg-success" align="center">
         <h3>Pickups</h3>
     </div>
@@ -30,7 +30,7 @@
             <% when "accepted" %>
               <button type="button" class="btn btn-primary col-9 mb-3" data-toggle="modal" data-target="#exampleModal">Complete</button>
 
-              <%= form_tag( pickups_update_path(pickup.id), method: "get") do %>
+              <%= form_tag( pickups_update_path(pickup.id), method: "post") do %>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
