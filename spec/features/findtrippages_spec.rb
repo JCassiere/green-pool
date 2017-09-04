@@ -17,12 +17,12 @@ RSpec.feature "Find Trip Page", type: :feature do
       end
 
       it "I should be able to go to the homepage and see the find trip link" do
-        expect(find_button('Have Your Recycling Picked Up').visible?).to be true
+        expect(find_button('Schedule Pickup').visible?).to be true
       end
 
       describe "on the find trip page" do
         before(:each) do
-          click_button('Have Your Recycling Picked Up')
+          click_button('Schedule Pickup')
         end
 
         it "a trip's driver should be visible" do
