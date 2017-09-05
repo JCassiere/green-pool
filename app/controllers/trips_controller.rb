@@ -29,18 +29,19 @@ class TripsController < ApplicationController
   def destroy
     trip = Trip.find(params[:id])
     @user = trip.user
-    @pickup_numbers = trip.pickups.map { |pickup| pickup.user.phone_number }
+    # @pickup_numbers = trip.pickups.map { |pickup| pickup.user.phone_number }
     trip.destroy
     flash[:notice] = "Trip cancelled"
-    if @pickup_numbers.empty?
-      redirect_to users_show_path(@user)
-    else
-      redirect_to send_sms_path(
-        final_path: users_show_path(@user),
-        body: "#{@user.full_name} has cancelled their trip and will no longer be picking up your recycling.  Please find another trip.",
-        sms_numbers: @pickup_numbers
-      )
-    end
+    redirect_to users_show_path(@user)
+    # if @pickup_numbers.empty?
+    #   redirect_to users_show_path(@user)
+    # else
+    #   redirect_to send_sms_path(
+    #     final_path: users_show_path(@user),
+    #     body: "#{@user.full_name} has cancelled their trip and will no longer be picking up your recycling.  Please find another trip.",
+    #     sms_numbers: @pickup_numbers
+    #   )
+    # end
   end
 
   private
