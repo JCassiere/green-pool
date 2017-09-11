@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+=begin
 user_one = User.new(
   first_name: "Random",
   last_name: "Person",
@@ -39,10 +39,10 @@ user_two = User.new(
 )
 
 user_three = User.new(
-  first_name: "Another", 
-  last_name: "Person", 
+  first_name: "Another",
+  last_name: "Person",
   phone_number: '(513) 703-4852',
-  email: "fakeemail3@gmail.com", 
+  email: "fakeemail3@gmail.com",
   avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
   street: "2451 NW 5 Ave",
   city: "Miami",
@@ -53,10 +53,10 @@ user_three = User.new(
 )
 
 user_four = User.new(
-  first_name: "Other", 
-  last_name: "Person", 
+  first_name: "Other",
+  last_name: "Person",
   phone_number: '(513) 703-4852',
-  email: "fakeemail4@gmail.com", 
+  email: "fakeemail4@gmail.com",
   avatar: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'),
   street: "1251 SW 21 Ter",
   city: "Miami",
@@ -107,3 +107,4 @@ user_four.trips.create(
   pickup_time: Faker::Time.forward(2, :morning),
   total_space: 5
 )
+=end

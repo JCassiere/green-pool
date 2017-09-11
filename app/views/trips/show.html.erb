@@ -25,8 +25,56 @@
       	    <p>Number of Bags: <%= pickup.num_bags %><p>
       	    <% case pickup.status %>
       	    <% when "created" %>
-              <%= button_to "Accept", pickups_update_path(pickup.id), data: {confirm: 'Accept Pickup?'}, class: "btn col-9 mb-3" %>
-              <%= button_to "Deny", pickup_path(pickup.id), method: :delete, data: {confirm: 'Deny Pickup?'}, class: "btn col-9 mb-3" %>
+              <!-- <%= button_to "Accept", pickups_update_path(pickup.id), data: {confirm: 'Accept Pickup?'}, class: "btn col-9 mb-3" %> -->
+
+              <button type="button" class="btn btn-primary col-9 mb-3" data-toggle="modal" data-target="#exampleModal">Accept</button>
+
+              <%=form_tag( pickups_update_path(pickup.id), method: "post") do %>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Accept the trip!
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Done</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+
+              <button type="button" class="btn btn-primary col-9 mb-3" data-toggle="modal" data-target="#exampleModal2">Deny</button>
+
+              <%= form_tag( controller: "pickups", action: "destroy", method: "post") do %>
+                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Deny the trip!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Done</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+
+              <!-- <%= button_to "Deny", pickup_path(pickup.id), method: :delete, data: {confirm: 'Deny Pickup?'}, class: "btn col-9 mb-3" %> -->
             <% when "accepted" %>
               <button type="button" class="btn btn-primary col-9 mb-3" data-toggle="modal" data-target="#exampleModal">Complete</button>
 
