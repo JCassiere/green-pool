@@ -1,7 +1,8 @@
-# README
 Me: Hey, this is Green Pool!
 
 You: What's Green Pool?
+
+Head to gogreenpool.co to check it out!
 
 Green Pool is a online platform for recycling collaboration.
 
@@ -25,3 +26,4 @@ The app is deployed using Heroku on gogreepool.co
 Testing for the app uses the Capybara framework.
 
 
+Head to gogreenpool.co to check it out!
