@@ -1,24 +1,27 @@
 # README
+Me: Hey, this is Green Pool!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You: What's Green Pool?
 
-Things you may want to cover:
+Green Pool is a online platform for recycling collaboration.
 
-* Ruby version
+Basically, it's an Uber for recycling ( *sigh* we know, but this is the easiset way to get the point across).
 
-* System dependencies
+You can get a really good idea about how the app works and see us in this video here...
+https://www.facebook.com/wyncode/videos/1387963171316877/
 
-* Configuration
+Green Pool was built on Ruby on Rails 5 with Ruby version 2.4.1
 
-* Database creation
+It uses a PostgresSQL database.
 
-* Database initialization
+Profile Pictures are stored in an AWS Bucket.
 
-* How to run the test suite
+The UI uses the Bootstrap framework along with Javascript for animations (Mostly the cool wave on the homepage).
 
-* Services (job queues, cache servers, search engines, etc.)
+Text notifications to users are made possible by Twillio.
 
-* Deployment instructions
+The app is deployed using Heroku on gogreepool.co
 
-* ...
+Testing for the app uses the Capybara framework.
+
+
